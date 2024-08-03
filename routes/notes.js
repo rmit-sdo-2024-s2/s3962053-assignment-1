@@ -6,7 +6,7 @@ const Note = require('../models/note');
 router.get('/', async (req, res) => {
   try {
     const notes = await Note.find().sort('-createdAt');
-    res.json(notes);  // Ensure the response is JSON
+    res.json(notes); // Ensure the response is JSON
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -21,7 +21,7 @@ router.post('/notes', async (req, res) => {
 
   try {
     const newNote = await note.save();
-    res.status(201).json(newNote);  // Ensure the response is JSON and status is 201
+    res.status(201).json(newNote); // Ensure the response is JSON and status is 201
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
