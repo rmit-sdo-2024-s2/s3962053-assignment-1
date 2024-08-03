@@ -3,7 +3,7 @@ const app = require("../../app");
 const mongoose = require("mongoose");
 const Note = require("../../models/note");
 
-jest.setTimeout(60000); // Increase timeout to 60 seconds
+jest.setTimeout(60000);
 
 describe("Notes API", () => {
   beforeAll(async () => {
@@ -27,6 +27,7 @@ describe("Notes API", () => {
   test("GET / should return all notes", async () => {
     const res = await request(app).get("/");
     expect(res.status).toBe(200);
+    expect(res.body).toBeDefined();
     expect(res.body.length).toBe(2);
     expect(res.body[0].title).toBe("Note 1");
     expect(res.body[1].title).toBe("Note 2");

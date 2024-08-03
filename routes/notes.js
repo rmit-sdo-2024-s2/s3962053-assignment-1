@@ -12,13 +12,13 @@ router.post("/notes", async (req, res) => {
   const note = new Note({
     title: req.body.title,
     content: req.body.content,
-    isImportant: req.body.isImportant === "true", // Convert checkbox value to boolean
+    isImportant: req.body.isImportant === "true",
     createdAt: new Date()
   });
 
   try {
-    await note.save(); // Removed `newNote` assignment
-    res.redirect("/");
+    const newNote = await note.save();
+    res.status(201).json(newNote); // Return the created note as JSON
   } catch (err) {
     res.status(400).send(err);
   }
