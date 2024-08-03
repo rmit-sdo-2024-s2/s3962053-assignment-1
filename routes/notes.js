@@ -17,7 +17,7 @@ router.post("/notes", async (req, res) => {
   });
 
   try {
-    const newNote = await note.save();
+    await note.save(); // Removed `newNote` assignment
     res.redirect("/");
   } catch (err) {
     res.status(400).send(err);
