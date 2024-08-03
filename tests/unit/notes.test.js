@@ -7,13 +7,15 @@ let server;
 
 describe("Notes API", () => {
   beforeAll(async () => {
-    server = app.listen(4000, () => {
-      console.log("Test server started on port 4000");
-    });
-
     await mongoose.connect(process.env.SERVER, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+    });
+
+    // Start server on a dynamic port
+    server = app.listen(0, () => {
+      const port = server.address().port;
+      console.log(`Test server started on port ${port}`);
     });
   });
 
