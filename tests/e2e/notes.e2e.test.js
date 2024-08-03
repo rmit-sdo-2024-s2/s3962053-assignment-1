@@ -54,7 +54,7 @@ test.afterAll(() => {
 
 test("E2E Test for Notes Application", async ({ page }) => {
   // Navigate to the application
-  const response = await page.goto("http://localhost:4000");
+  await page.goto("http://localhost:4000");
 
   // Log the response body for debugging
   const body = await page.content();
@@ -71,9 +71,9 @@ test("E2E Test for Notes Application", async ({ page }) => {
   await newNoteButton.click();
 
   // Fill out the new note form
-  await page.fill('input[name="title"]', "E2E Test Note");
-  await page.fill('textarea[name="content"]', "This is a content of E2E Test Note");
-  await page.click('button[type="submit"]');
+  await page.fill("input[name=\"title\"]", "E2E Test Note");
+  await page.fill("textarea[name=\"content\"]", "This is a content of E2E Test Note");
+  await page.click("button[type=\"submit\"]");
 
   // Ensure the new note appears in the list
   const noteTitle = await page.locator("h5.card-title");
