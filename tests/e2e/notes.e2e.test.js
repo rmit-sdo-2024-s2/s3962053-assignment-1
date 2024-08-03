@@ -1,5 +1,6 @@
 const { test, expect } = require("@playwright/test");
 const { exec, execSync } = require("child_process");
+const fetch = require("node-fetch");
 
 let serverProcess;
 
@@ -16,6 +17,20 @@ function killPort(port) {
   }
 }
 
+async function waitForServer(url, timeout = 15000) {
+  const start = Date.now();
+  while (Date.now() - start < timeout) {
+    try {
+      const res = await fetch(url);
+      if (res.ok) return true;
+    } catch (e) {
+      // Ignore errors
+    }
+    await new Promise(resolve => setTimeout(resolve, 500)); // Wait 500ms before retrying
+  }
+  throw new Error(`Server did not start within ${timeout}ms`);
+}
+
 test.beforeAll(async () => {
   // Kill any process running on port 4000
   killPort(4000);
@@ -29,8 +44,8 @@ test.beforeAll(async () => {
     console.error(`stderr: ${stderr}`);
   });
 
-  // Wait for the server to start
-  await new Promise(resolve => setTimeout(resolve, 10000)); // Increase timeout to 10 seconds
+  // Wait for the server to be ready
+  await waitForServer("http://localhost:4000", 30000); // Increase timeout to 30 seconds
 });
 
 test.afterAll(() => {
