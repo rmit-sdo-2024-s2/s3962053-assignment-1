@@ -1,6 +1,5 @@
 const { test, expect } = require("@playwright/test");
 const { exec, execSync } = require("child_process");
-const fetch = require("node-fetch");
 
 let serverProcess;
 
@@ -21,8 +20,8 @@ async function waitForServer(url, timeout = 15000) {
   const start = Date.now();
   while (Date.now() - start < timeout) {
     try {
-      const fetch = await import('node-fetch'); // Use dynamic import
-      const res = await fetch.default(url);
+      const fetch = (await import('node-fetch')).default; // Use dynamic import
+      const res = await fetch(url);
       if (res.ok) return true;
     } catch (e) {
       // Ignore errors
