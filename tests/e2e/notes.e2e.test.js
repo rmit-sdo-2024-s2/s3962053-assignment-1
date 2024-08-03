@@ -5,7 +5,12 @@ let serverProcess;
 
 function killPort(port) {
   try {
-    execSync(`sudo lsof -t -i:${port} | xargs sudo kill -9`);
+    const pids = execSync(`lsof -t -i:${port}`).toString().trim().split('\n');
+    pids.forEach(pid => {
+      if (pid) {
+        execSync(`kill -9 ${pid}`);
+      }
+    });
   } catch (error) {
     console.error(`Error killing process on port ${port}: ${error}`);
   }
@@ -25,7 +30,7 @@ test.beforeAll(async () => {
   });
 
   // Wait for the server to start
-  await new Promise(resolve => setTimeout(resolve, 5000));
+  await new Promise(resolve => setTimeout(resolve, 10000)); // Increase timeout to 10 seconds
 });
 
 test.afterAll(() => {
