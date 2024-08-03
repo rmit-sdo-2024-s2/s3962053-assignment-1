@@ -20,7 +20,15 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16' # Update Node.js version to 16
+          node-version: '16'
+
+      - name: Set up MongoDB
+        run: |
+          wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+          echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+          sudo apt-get update
+          sudo apt-get install -y mongodb-org
+          sudo systemctl start mongod
 
       - name: Install dependencies
         run: npm install
@@ -29,6 +37,8 @@ jobs:
         run: npm run test-lint
 
       - name: Run unit tests
+        env:
+          SERVER: "mongodb://localhost:27017/test-database" # Set the MongoDB connection string
         run: npm run test-unit
 
       - name: Run integration tests
