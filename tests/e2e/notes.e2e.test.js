@@ -5,7 +5,7 @@ let serverProcess;
 
 function killPort(port) {
   try {
-    const pids = execSync(`lsof -t -i:${port}`).toString().trim().split('\n');
+    const pids = execSync(`lsof -t -i:${port}`).toString().trim().split("\n");
     pids.forEach(pid => {
       if (pid) {
         execSync(`kill -9 ${pid}`);
@@ -20,7 +20,7 @@ async function waitForServer(url, timeout = 15000) {
   const start = Date.now();
   while (Date.now() - start < timeout) {
     try {
-      const fetch = (await import('node-fetch')).default; // Use dynamic import
+      const fetch = (await import("node-fetch")).default; // Use dynamic import
       const res = await fetch(url);
       if (res.ok) return true;
     } catch (e) {
