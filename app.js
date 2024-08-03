@@ -13,8 +13,8 @@ app.use(methodOverride("_method"));
 
 app.get("/", async (req, res) => {
   try {
-    const notes = await Note.find().sort("createdAt"); // Sort by createdAt in ascending order
-    res.status(200).json(notes); // Ensure notes are returned as JSON
+    const notes = await Note.find().sort("createdAt");
+    res.render("index", { notes: notes });
   } catch (err) {
     res.status(500).send(err);
   }
@@ -27,9 +27,8 @@ mongoose.connect(process.env.SERVER, {
   useUnifiedTopology: true,
 }).then(() => {
   console.log("Connected to MongoDB");
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server Has Started on port ${PORT}`);
+  app.listen(process.env.PORT || 3000, () => {
+    console.log("Server Has Started");
   });
 }).catch((error) => {
   console.error("Error connecting to MongoDB", error);
