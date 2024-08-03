@@ -20,7 +20,6 @@ app.get("/", async (req, res) => {
   }
 });
 
-
 mongoose.set("strictQuery", true);
 
 mongoose.connect(process.env.SERVER, {
@@ -28,8 +27,9 @@ mongoose.connect(process.env.SERVER, {
   useUnifiedTopology: true,
 }).then(() => {
   console.log("Connected to MongoDB");
-  app.listen(process.env.PORT || 3000, () => {
-    console.log("Server Has Started");
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Server Has Started on port ${PORT}`);
   });
 }).catch((error) => {
   console.error("Error connecting to MongoDB", error);

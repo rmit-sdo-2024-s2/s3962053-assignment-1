@@ -1,10 +1,21 @@
 const { test, expect } = require("@playwright/test");
-const { exec } = require("child_process");
+const { exec, execSync } = require("child_process");
 
 let serverProcess;
 
+function killPort(port) {
+  try {
+    execSync(`sudo lsof -t -i:${port} | xargs sudo kill -9`);
+  } catch (error) {
+    console.error(`Error killing process on port ${port}: ${error}`);
+  }
+}
+
 test.beforeAll(async () => {
-  serverProcess = exec("node app.js", (error, stdout, stderr) => {
+  // Kill any process running on port 4000
+  killPort(4000);
+
+  serverProcess = exec("PORT=4000 node app.js", (error, stdout, stderr) => {
     if (error) {
       console.error(`exec error: ${error}`);
       return;
@@ -23,7 +34,7 @@ test.afterAll(() => {
 
 test("E2E Test for Notes Application", async ({ page }) => {
   // Navigate to the application
-  await page.goto("http://localhost:3000");
+  await page.goto("http://localhost:4000");
 
   // Ensure the page title is correct
   await expect(page).toHaveTitle("Notes Tonight");
