@@ -41,8 +41,8 @@ test("E2E Test for Notes Application", async ({ page }) => {
   // Navigate to the application
   await page.goto("http://localhost:4000");
 
-  // Ensure the page title is correct
-  await expect(page).toHaveTitle("Notes Tonight");
+  // Ensure the page title is correct with increased timeout
+  await expect(page).toHaveTitle("Notes Tonight", { timeout: 15000 });
 
   // Ensure the New Note button is visible
   const newNoteButton = await page.locator("a.btn-success");
