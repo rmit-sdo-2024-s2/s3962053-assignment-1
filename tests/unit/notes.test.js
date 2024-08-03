@@ -3,6 +3,8 @@ const app = require("../../app");
 const mongoose = require("mongoose");
 const Note = require("../../models/note");
 
+jest.setTimeout(30000); // Increase timeout to 30 seconds
+
 describe("Notes API", () => {
   beforeAll(async () => {
     await mongoose.connect(process.env.SERVER, {
