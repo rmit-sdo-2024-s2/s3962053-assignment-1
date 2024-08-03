@@ -58,7 +58,7 @@ test("E2E Test for Notes Application", async ({ page }) => {
 
   // Log the response body for debugging
   const body = await page.content();
-  console.log(body);
+  console.log("Page content:", body);
 
   // Ensure the page title is correct with increased timeout
   await expect(page).toHaveTitle("Notes Tonight", { timeout: 15000 });
