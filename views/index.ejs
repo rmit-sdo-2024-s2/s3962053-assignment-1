@@ -18,12 +18,15 @@
     </div>
     <div class="container">
         <% notes.forEach(note => { %>
-        <div class="card mt-2">
+        <div class="card mt-2 <%= note.isImportant ? 'border-danger' : '' %>">
             <div class="card-body">
                 <h5 class="card-title"><%= note.title %></h5>
                 <p class="text-muted">Posted On: <%= note.createdAt.toLocaleDateString() %></p>
-                <p class="card-text"><%= note.description %></p>
-                <form action="/<%= note._id %>?_method=DELETE" method="POST">
+                <p class="card-text"><%= note.content %></p>
+                <% if (note.isImportant) { %>
+                    <span class="badge badge-danger">Important</span>
+                <% } %>
+                <form action="/<%= note._id %>?_method=DELETE" method="POST" class="mt-2">
                     <button class="btn btn-danger float-right">Delete</button>
                 </form>
             </div>
