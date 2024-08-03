@@ -1,6 +1,5 @@
 const request = require('supertest');
 const app = require('../../app'); // Adjust the path as necessary
-const mongoose = require('mongoose');
 const Note = require('../../models/note');
 const mockingoose = require('mockingoose');
 
@@ -19,6 +18,7 @@ describe('Notes API', () => {
 
       const res = await request(app).get('/');
       expect(res.status).toBe(200);
+      expect(res.body).toBeDefined();  // Ensure the response body is defined
       expect(res.body.length).toBe(2);
       expect(res.body[0].title).toBe('Note 1');
       expect(res.body[1].title).toBe('Note 2');
@@ -36,6 +36,7 @@ describe('Notes API', () => {
         .set('Accept', 'application/json');
 
       expect(res.status).toBe(201);
+      expect(res.body).toBeDefined();  // Ensure the response body is defined
       expect(res.body.title).toBe('New Note');
       expect(res.body.content).toBe('New Content');
     });

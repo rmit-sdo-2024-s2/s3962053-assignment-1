@@ -2,32 +2,28 @@ const express = require('express');
 const router = express.Router();
 const Note = require('../models/note');
 
-router.get('/new', (req, res) => {
-  res.render('new');
-});
-
-router.post('/', async (req, res) => {
-  let note = await new Note({
-    title: req.body.title,
-    description: req.body.description,
-  });
+// Get all notes
+router.get('/', async (req, res) => {
   try {
-    await note.save();
-    res.redirect('/');
-  } catch (e) {
-    console.log(e);
-    res.render('new');
+    const notes = await Note.find().sort('-createdAt');
+    res.json(notes);  // Ensure the response is JSON
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
+// Create a new note
+router.post('/notes', async (req, res) => {
+  const note = new Note({
+    title: req.body.title,
+    content: req.body.content,
+  });
 
-router.delete('/:id', async (req, res) => {
   try {
-    await Note.findByIdAndRemove(req.params.id);
-    res.redirect('/');
-  } catch (e) {
-    console.log(e);
-    res.redirect('/');
+    const newNote = await note.save();
+    res.status(201).json(newNote);  // Ensure the response is JSON and status is 201
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 });
 
