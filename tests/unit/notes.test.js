@@ -14,10 +14,12 @@ describe("Notes API", () => {
 
     await Note.deleteMany({});
 
-    await Note.create([
-      { title: "Note 1", content: "Content 1", createdAt: new Date() },
-      { title: "Note 2", content: "Content 2", createdAt: new Date() },
-    ]);
+    const notes = [
+      { title: "Note 1", content: "Content 1", createdAt: new Date(Date.now() - 1000) },
+      { title: "Note 2", content: "Content 2", createdAt: new Date() }
+    ];
+
+    await Note.insertMany(notes);
   });
 
   afterAll(async () => {
