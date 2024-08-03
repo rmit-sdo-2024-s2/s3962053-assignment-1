@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - 'feature/*'
+      - feature/**
   pull_request:
     branches:
       - main
@@ -13,6 +13,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      mongo:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongo --eval 'db.runCommand({ ping: 1 })'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -20,25 +31,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
-
-      - name: Set up MongoDB
-        run: |
-          wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-          echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-          sudo apt-get update
-          sudo apt-get install -y mongodb-org
-          sudo systemctl start mongod
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install
 
       - name: Run lint
         run: npm run test-lint
 
       - name: Run unit tests
-        env:
-          SERVER: "mongodb://localhost:27017/test-database" # Set the MongoDB connection string
         run: npm run test-unit
 
       - name: Run integration tests
@@ -46,21 +50,3 @@ jobs:
 
       - name: Run end-to-end tests
         run: npm run test-e2e
-
-      - name: Generate build artifact
-        if: github.ref == 'refs/heads/main'
-        run: npm run build
-
-      - name: Upload build artifact
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-artifact
-          path: build
-
-      - name: Upload coverage reports
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-reports
-          path: coverage
