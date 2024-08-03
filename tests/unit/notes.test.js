@@ -1,11 +1,16 @@
 const request = require("supertest");
-const { app, server, startServer } = require("../../app");
 const mongoose = require("mongoose");
+const app = require("../../app");
 const Note = require("../../models/note");
+
+let server;
 
 describe("Notes API", () => {
   beforeAll(async () => {
-    await startServer();
+    server = app.listen(4000, () => {
+      console.log("Test server started on port 4000");
+    });
+
     await mongoose.connect(process.env.SERVER, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -14,7 +19,7 @@ describe("Notes API", () => {
 
   afterAll(async () => {
     await mongoose.connection.close();
-    await new Promise(resolve => server.close(resolve)); // Ensure the server is closed after tests
+    await new Promise(resolve => server.close(resolve));
   });
 
   test("GET / should return all notes", async () => {

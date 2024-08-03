@@ -1,10 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const app = express();
+const methodOverride = require("method-override");
 const Note = require("./models/note");
 const notesRouter = require("./routes/notes");
-const methodOverride = require("method-override");
 require("dotenv").config();
+
+const app = express();
 
 app.set("view engine", "ejs");
 app.use(express.json());
@@ -20,26 +21,22 @@ app.get("/", async (req, res) => {
   }
 });
 
-mongoose.set("strictQuery", true);
-
-let server;
-const startServer = async () => {
-  try {
-    await mongoose.connect(process.env.SERVER, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log("Connected to MongoDB");
-    server = app.listen(process.env.PORT || 3000, () => {
-      console.log("Server Has Started");
-    });
-  } catch (error) {
-    console.error("Error connecting to MongoDB", error);
-  }
-};
-
-startServer();
-
 app.use("/", notesRouter);
 
-module.exports = { app, server, startServer };
+mongoose.set("strictQuery", true);
+
+if (require.main === module) {
+  mongoose.connect(process.env.SERVER, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }).then(() => {
+    console.log("Connected to MongoDB");
+    app.listen(process.env.PORT || 3000, () => {
+      console.log("Server Has Started");
+    });
+  }).catch((error) => {
+    console.error("Error connecting to MongoDB", error);
+  });
+}
+
+module.exports = app;
