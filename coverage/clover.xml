@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1722704263505" clover="3.2.0">
-  <project timestamp="1722704263505" name="All files">
-    <metrics statements="44" coveredstatements="39" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="5" elements="53" coveredelements="46" complexity="0" loc="44" ncloc="44" packages="3" files="3" classes="3"/>
+<coverage generated="1722708403436" clover="3.2.0">
+  <project timestamp="1722708403437" name="All files">
+    <metrics statements="42" coveredstatements="35" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="3" elements="51" coveredelements="40" complexity="0" loc="42" ncloc="42" packages="3" files="3" classes="3"/>
     <package name="s3962053-assignment-1">
-      <metrics statements="24" coveredstatements="22" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>
+      <metrics statements="24" coveredstatements="21" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="2"/>
       <file name="app.js" path="/home/adduser/s3962053-assignment-1/app.js">
-        <metrics statements="24" coveredstatements="22" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="3"/>
+        <metrics statements="24" coveredstatements="21" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -18,15 +18,15 @@
         <line num="11" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
         <line num="14" count="1" type="stmt"/>
-        <line num="15" count="3" type="stmt"/>
-        <line num="16" count="3" type="stmt"/>
-        <line num="17" count="3" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
         <line num="19" count="0" type="stmt"/>
         <line num="23" count="1" type="stmt"/>
         <line num="25" count="1" type="stmt"/>
         <line num="29" count="1" type="stmt"/>
         <line num="30" count="1" type="cond" truecount="2" falsecount="0"/>
-        <line num="31" count="1" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
         <line num="34" count="0" type="stmt"/>
         <line num="37" count="1" type="stmt"/>
         <line num="39" count="1" type="stmt"/>
@@ -42,26 +42,24 @@
       </file>
     </package>
     <package name="s3962053-assignment-1.routes">
-      <metrics statements="17" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+      <metrics statements="15" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
       <file name="notes.js" path="/home/adduser/s3962053-assignment-1/routes/notes.js">
-        <metrics statements="17" coveredstatements="14" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <metrics statements="15" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="23" count="1" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
         <line num="28" count="1" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="31" count="1" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
       </file>
     </package>
   </project>

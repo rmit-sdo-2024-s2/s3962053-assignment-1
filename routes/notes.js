@@ -13,11 +13,12 @@ router.post("/notes", async (req, res) => {
   });
   try {
     await note.save();
-    res.redirect("/");
+    res.status(201).json(note);
   } catch (err) {
-    res.render("new", { note: note });
+    res.status(400).send(err);
   }
 });
+
 
 router.delete("/:id", async (req, res) => {
   await Note.findByIdAndDelete(req.params.id);

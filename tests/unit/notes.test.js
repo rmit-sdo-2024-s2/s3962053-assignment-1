@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../../app");
+const { app, server } = require("../../app");
 const mongoose = require("mongoose");
 const Note = require("../../models/note");
 
@@ -13,6 +13,7 @@ describe("Notes API", () => {
 
   afterAll(async () => {
     await mongoose.connection.close();
+    await new Promise(resolve => server.close(resolve)); // Ensure the server is closed after tests
   });
 
   test("GET / should return all notes", async () => {

@@ -13,8 +13,8 @@ app.use(methodOverride("_method"));
 
 app.get("/", async (req, res) => {
   try {
-    const notes = await Note.find().sort("createdAt");
-    res.render("index", { notes: notes });
+    const notes = await Note.find().sort("createdAt"); // Sort by createdAt in ascending order
+    res.status(200).json(notes); // Ensure notes are returned as JSON
   } catch (err) {
     res.status(500).send(err);
   }
@@ -22,12 +22,12 @@ app.get("/", async (req, res) => {
 
 mongoose.set("strictQuery", true);
 
-mongoose.connect(process.env.SERVER, {
+const server = mongoose.connect(process.env.SERVER, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 }).then(() => {
   console.log("Connected to MongoDB");
-  app.listen(process.env.PORT || 3000, () => {
+  return app.listen(process.env.PORT || 3000, () => {
     console.log("Server Has Started");
   });
 }).catch((error) => {
@@ -36,4 +36,4 @@ mongoose.connect(process.env.SERVER, {
 
 app.use("/", notesRouter);
 
-module.exports = app;
+module.exports = { app, server };
