@@ -1,5 +1,6 @@
 const { test, expect } = require("@playwright/test");
 const { exec, execSync } = require("child_process");
+const fetch = require("node-fetch");
 
 let serverProcess;
 
@@ -54,7 +55,11 @@ test.afterAll(() => {
 
 test("E2E Test for Notes Application", async ({ page }) => {
   // Navigate to the application
-  await page.goto("http://localhost:4000");
+  const response = await page.goto("http://localhost:4000");
+
+  // Log the response body for debugging
+  const body = await page.content();
+  console.log(body);
 
   // Ensure the page title is correct with increased timeout
   await expect(page).toHaveTitle("Notes Tonight", { timeout: 15000 });
