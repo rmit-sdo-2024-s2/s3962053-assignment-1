@@ -22,7 +22,7 @@
     "mongoose": "^6.13.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.23.0",
+    "@playwright/test": "^1.45.3",
     "eslint": "^8.57.0",
     "eslint-plugin-jest": "^28.6.0",
     "expect.js": "^0.3.1",
