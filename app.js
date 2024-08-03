@@ -22,18 +22,24 @@ app.get("/", async (req, res) => {
 
 mongoose.set("strictQuery", true);
 
-const server = mongoose.connect(process.env.SERVER, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  console.log("Connected to MongoDB");
-  return app.listen(process.env.PORT || 3000, () => {
-    console.log("Server Has Started");
-  });
-}).catch((error) => {
-  console.error("Error connecting to MongoDB", error);
-});
+let server;
+const startServer = async () => {
+  try {
+    await mongoose.connect(process.env.SERVER, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Connected to MongoDB");
+    server = app.listen(process.env.PORT || 3000, () => {
+      console.log("Server Has Started");
+    });
+  } catch (error) {
+    console.error("Error connecting to MongoDB", error);
+  }
+};
+
+startServer();
 
 app.use("/", notesRouter);
 
-module.exports = { app, server };
+module.exports = { app, server, startServer };

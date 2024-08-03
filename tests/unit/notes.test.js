@@ -1,10 +1,11 @@
 const request = require("supertest");
-const { app, server } = require("../../app");
+const { app, server, startServer } = require("../../app");
 const mongoose = require("mongoose");
 const Note = require("../../models/note");
 
 describe("Notes API", () => {
   beforeAll(async () => {
+    await startServer();
     await mongoose.connect(process.env.SERVER, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
