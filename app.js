@@ -14,7 +14,7 @@ app.use(methodOverride("_method"));
 app.get("/", async (req, res) => {
   try {
     const notes = await Note.find().sort("-createdAt");
-    res.render("index", { notes: notes });
+    res.status(200).json(notes); // Ensure notes are returned as JSON
   } catch (err) {
     res.status(500).send(err);
   }
