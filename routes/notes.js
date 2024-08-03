@@ -11,7 +11,7 @@ router.get('/new', (req, res) => {
 router.post('/notes', async (req, res) => {
   const note = new Note({
     title: req.body.title,
-    description: req.body.description,
+    content: req.body.content,
     createdAt: new Date()
   });
 

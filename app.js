@@ -7,13 +7,17 @@ const methodOverride = require('method-override');
 require('dotenv').config();
 
 app.set('view engine', 'ejs');
-app.use(express.json()); // Ensure JSON parsing is enabled
-app.use(express.urlencoded({ extended: false })); // Ensure URL-encoded data parsing is enabled
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 
 app.get('/', async (req, res) => {
-  const notes = await Note.find().sort('-createdAt');
-  res.json(notes); // Ensure the response is JSON
+  try {
+    const notes = await Note.find().sort('-createdAt');
+    res.render('index', { notes: notes });
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 mongoose.set('strictQuery', true);
