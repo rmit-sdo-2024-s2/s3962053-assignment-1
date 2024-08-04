@@ -50,3 +50,34 @@ jobs:
 
       - name: Run end-to-end tests
         run: npm run test-e2e
+
+      - name: Upload code coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage
+          path: coverage
+
+  build-artifacts:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build application
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: path/to/build/artifacts
