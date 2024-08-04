@@ -10,7 +10,7 @@ router.post("/notes", async (req, res) => {
   const note = new Note({
     title: req.body.title,
     content: req.body.content,
-    isImportant: req.body.isImportant === 'true'
+    isImportant: req.body.isImportant === "true"
   });
   try {
     await note.save();
