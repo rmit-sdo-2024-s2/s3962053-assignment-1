@@ -70,10 +70,10 @@ describe("Notes API", () => {
     expect(updatedNote.isImportant).toBe(true);
   });
 
-  describe("Sample Failing Test", () => {
-    test("This test should fail", () => {
-      expect(true).toBe(false);
-    });
-  });
+  // describe("Sample Failing Test", () => {
+  //   test("This test should fail", () => {
+  //     expect(true).toBe(false);
+  //   });
+  // });
   
 });
