@@ -1,44 +1,72 @@
-const request = require('supertest');
-const app = require('../../app'); // Adjust the path as necessary
-const Note = require('../../models/note');
-const mockingoose = require('mockingoose');
+const mongoose = require("mongoose");
+const request = require("supertest");
+const app = require("../../app");
+const Note = require("../../models/note");
 
-describe('Notes API', () => {
-  beforeEach(() => {
-    mockingoose.resetAll();
-  });
+let server;
 
-  describe('GET /', () => {
-    it('should return all notes', async () => {
-      const notes = [
-        { _id: '1', title: 'Note 1', content: 'Content 1' },
-        { _id: '2', title: 'Note 2', content: 'Content 2' }
-      ];
-      mockingoose(Note).toReturn(notes, 'find');
+describe("Notes API", () => {
+  beforeAll(async () => {
+    await mongoose.connect(process.env.SERVER, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
 
-      const res = await request(app).get('/');
-      expect(res.status).toBe(200);
-      expect(res.body).toBeDefined();
-      expect(res.body.length).toBe(2);
-      expect(res.body[0].title).toBe('Note 1');
-      expect(res.body[1].title).toBe('Note 2');
+    // Start server on a different port
+    server = app.listen(4000, () => {
+      console.log("Test server started on port 4000");
     });
   });
 
-  describe('POST /notes', () => {
-    it('should create a new note', async () => {
-      const note = { title: 'New Note', content: 'New Content' };
-      mockingoose(Note).toReturn(note, 'save');
+  afterAll(async () => {
+    await mongoose.connection.close();
+    await new Promise(resolve => server.close(resolve)); // Ensure the server is closed after tests
+  });
 
-      const res = await request(app)
-        .post('/notes')
-        .send(note)
-        .set('Accept', 'application/json');
+  beforeEach(async () => {
+    await Note.deleteMany({});
+    await Note.insertMany([
+      { title: "Note 1", content: "Content 1", isImportant: false },
+      { title: "Note 2", content: "Content 2", isImportant: false },
+    ]);
+  });
 
-      expect(res.status).toBe(201);
-      expect(res.body).toBeDefined();
-      expect(res.body.title).toBe('New Note');
-      expect(res.body.content).toBe('New Content');
-    });
+  test("GET /api/notes should return all notes", async () => {
+    const res = await request(app).get("/api/notes");
+    expect(res.status).toBe(200);
+    expect(res.body).toBeDefined();
+    expect(Array.isArray(res.body)).toBe(true); // Check if the body is an array
+    expect(res.body.length).toBe(2);
+    expect(res.body[0].title).toBe("Note 1");
+    expect(res.body[1].title).toBe("Note 2");
+  });
+
+  test("POST /notes should create a new note", async () => {
+    const res = await request(app)
+      .post("/notes")
+      .send({ title: "New Note", content: "New Content", isImportant: "true" })
+      .set("Accept", "application/json");
+    expect(res.status).toBe(201); // Expecting creation
+    const notes = await Note.find();
+    expect(notes.length).toBe(3);
+    expect(notes[2].title).toBe("New Note");
+  });
+
+  test("POST /notes/:id/important should mark a note as important", async () => {
+    const newNote = await request(app)
+      .post("/notes")
+      .send({ title: "Another Note", content: "Another Content", isImportant: "false" })
+      .set("Accept", "application/json");
+
+    const noteId = newNote.body._id;
+
+    const markImportant = await request(app)
+      .post(`/notes/${noteId}/important`)
+      .send();
+
+    expect(markImportant.status).toBe(302); // Check for redirection
+
+    const updatedNote = await Note.findById(noteId);
+    expect(updatedNote.isImportant).toBe(true);
   });
 });

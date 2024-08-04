@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - 'feature/*'
+      - feature/**
   pull_request:
     branches:
       - main
@@ -13,6 +13,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      mongo:
+        image: mongo:4.4
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongo --eval 'db.runCommand({ ping: 1 })'"
+          --health-interval 30s
+          --health-timeout 10s
+          --health-retries 10
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -20,10 +31,13 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: 18
 
       - name: Install dependencies
         run: npm install
+
+      - name: Install Playwright browsers
+        run: npx playwright install
 
       - name: Run lint
         run: npm run test-lint
@@ -37,20 +51,33 @@ jobs:
       - name: Run end-to-end tests
         run: npm run test-e2e
 
-      - name: Generate build artifact
-        if: github.ref == 'refs/heads/main'
+      - name: Upload code coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage
+          path: coverage
+
+  build-artifacts:
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build application
         run: npm run build
 
-      - name: Upload build artifact
-        if: github.ref == 'refs/heads/main'
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: build-artifact
-          path: build
-
-      - name: Upload coverage reports
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage-reports
-          path: coverage
+          name: build-artifacts
+          path: path/to/build/artifacts

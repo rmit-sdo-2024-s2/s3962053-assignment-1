@@ -1,36 +1,39 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const Note = require('../models/note');
+const Note = require("../models/note");
 
-// Route to show the form to create a new note
-router.get('/new', (req, res) => {
-  res.render('new');
+router.get("/new", (req, res) => {
+  res.render("new");
 });
 
-// Create a new note
-router.post('/notes', async (req, res) => {
+router.post("/notes", async (req, res) => {
   const note = new Note({
     title: req.body.title,
     content: req.body.content,
-    createdAt: new Date()
+    isImportant: req.body.isImportant === "true"
   });
-
   try {
-    const newNote = await note.save();
-    res.redirect('/');
+    await note.save();
+    res.status(201).json(note); // Respond with JSON for tests
   } catch (err) {
     res.status(400).send(err);
   }
 });
 
-// Delete a note
-router.delete('/:id', async (req, res) => {
+router.post("/notes/:id/important", async (req, res) => {
   try {
-    await Note.findByIdAndDelete(req.params.id);
-    res.redirect('/');
+    const note = await Note.findById(req.params.id);
+    note.isImportant = !note.isImportant;
+    await note.save();
+    res.redirect("/"); // Redirect for normal flow
   } catch (err) {
     res.status(500).send(err);
   }
+});
+
+router.delete("/:id", async (req, res) => {
+  await Note.findByIdAndDelete(req.params.id);
+  res.redirect("/");
 });
 
 module.exports = router;
