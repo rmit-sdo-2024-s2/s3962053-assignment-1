@@ -69,4 +69,11 @@ describe("Notes API", () => {
     const updatedNote = await Note.findById(noteId);
     expect(updatedNote.isImportant).toBe(true);
   });
+
+  describe('Sample Failing Test', () => {
+    test('This test should fail', () => {
+      expect(true).toBe(false);
+    });
+  });
+  
 });
