@@ -9,11 +9,26 @@ The pipeline is automatically triggered on the following events:
 - Push to any `feature/*` branch
 - Pull requests to the `main` branch
 
+## Prerequisites
+Before running any commands, ensure you have Node.js installed. You can download it from [Node.js official website](https://nodejs.org/).
+
 ## Installation
-Before running any commands, ensure you have Node.js installed. Then, install the necessary dependencies:
-```bash
-npm install
-```
+To set up the project locally, follow these steps:
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/your-repo.git
+    ```
+
+2. Navigate to the project directory:
+    ```bash
+    cd your-repo
+    ```
+
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
 
 ## Commands and Their Functionality
 
@@ -42,22 +57,22 @@ npm install
 ## Repository Structure
 S3962053-ASSIGNMENT-1/
 ├── .github/
-│   └── workflows/
-│       └── ci.yml
+│ └── workflows/
+│ └── ci.yml
 ├── models/
-│   └── note.js
+│ └── note.js
 ├── routes/
-│   └── notes.js
+│ └── notes.js
 ├── views/
-│   ├── index.ejs
-│   └── new.ejs
+│ ├── index.ejs
+│ └── new.ejs
 ├── tests/
-│   ├── unit/
-│   │   └── notes.test.js
-│   ├── integration/
-│   │   └── notes.integration.test.js
-│   └── e2e/
-│       └── notes.e2e.test.js
+│ ├── unit/
+│ │ └── notes.test.js
+│ ├── integration/
+│ │ └── notes.integration.test.js
+│ └── e2e/
+│ └── notes.e2e.test.js
 ├── app.js
 ├── package-lock.json
 ├── package.json
@@ -68,7 +83,23 @@ S3962053-ASSIGNMENT-1/
 └── analysis.txt
 
 ## How to Contribute
-- Create a new branch for your feature: `git checkout -b feature/your-feature-name`
-- Commit your changes: `git commit -m 'Add some feature'`
-- Push to the branch: `git push origin feature/your-feature-name`
-- Create a pull request
+1. Create a new branch for your feature:
+    ```bash
+    git checkout -b feature/your-feature-name
+    ```
+
+2. Commit your changes:
+    ```bash
+    git commit -m 'Add some feature'
+    ```
+
+3. Push to the branch:
+    ```bash
+    git push origin feature/your-feature-name
+    ```
+
+4. Create a pull request.
+
+## Contact Information
+For any questions or support, please contact Gia Tin at s3962053@rmit.edu.vn.
+
