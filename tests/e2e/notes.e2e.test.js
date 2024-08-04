@@ -1,5 +1,4 @@
 const { test, expect } = require("@playwright/test");
-const fetch = require("node-fetch");
 const mongoose = require("mongoose");
 const app = require("../../app");
 
@@ -20,7 +19,7 @@ test.describe("E2E Test for Notes Application", () => {
 
   test.afterAll(async () => {
     await mongoose.connection.close();
-    await new Promise((resolve) => server.close(resolve));
+    await new Promise(resolve => server.close(resolve));
   });
 
   test("should load the homepage and show the correct title", async ({ page }) => {
@@ -32,15 +31,30 @@ test.describe("E2E Test for Notes Application", () => {
 
   test("should create a new note", async ({ page }) => {
     await page.goto("http://localhost:4000/new");
-    await page.fill("input[name=\"title\"]", "Test Note");
-    await page.fill("textarea[name=\"content\"]", "This is a test note.");
-    await page.click("button[type=\"submit\"]");
+    await page.fill('input[name="title"]', "Test Note");
+    await page.fill('textarea[name="content"]', "This is a test note.");
+    await page.check('input[name="isImportant"]');
+    await page.click('button[type="submit"]');
 
+    const fetch = await import("node-fetch").then(mod => mod.default);
     const response = await fetch("http://localhost:4000");
     const notes = await response.json();
 
     expect(notes.length).toBeGreaterThan(0);
     expect(notes[notes.length - 1].title).toBe("Test Note");
     expect(notes[notes.length - 1].content).toBe("This is a test note.");
+    expect(notes[notes.length - 1].isImportant).toBe(true);
+  });
+
+  test("should mark a note as important", async ({ page }) => {
+    await page.goto("http://localhost:4000");
+    const noteCards = await page.locator(".card");
+    await noteCards.first().locator("form[action*='important']").click();
+
+    const fetch = await import("node-fetch").then(mod => mod.default);
+    const response = await fetch("http://localhost:4000");
+    const notes = await response.json();
+
+    expect(notes[0].isImportant).toBe(true);
   });
 });

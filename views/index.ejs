@@ -26,6 +26,9 @@
                 <% if (note.isImportant) { %>
                     <span class="badge badge-danger">Important</span>
                 <% } %>
+                <form action="/notes/<%= note._id %>/important" method="POST">
+                    <button class="btn btn-warning float-right">Mark as <%= note.isImportant ? 'Not Important' : 'Important' %></button>
+                </form>
                 <form action="/<%= note._id %>?_method=DELETE" method="POST" class="mt-2">
                     <button class="btn btn-danger float-right">Delete</button>
                 </form>

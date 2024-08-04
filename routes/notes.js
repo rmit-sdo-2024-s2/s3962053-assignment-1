@@ -9,7 +9,8 @@ router.get("/new", (req, res) => {
 router.post("/notes", async (req, res) => {
   const note = new Note({
     title: req.body.title,
-    content: req.body.content
+    content: req.body.content,
+    isImportant: req.body.isImportant === 'true'
   });
   try {
     await note.save();
@@ -19,6 +20,16 @@ router.post("/notes", async (req, res) => {
   }
 });
 
+router.post("/notes/:id/important", async (req, res) => {
+  try {
+    const note = await Note.findById(req.params.id);
+    note.isImportant = !note.isImportant;
+    await note.save();
+    res.redirect("/");
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 router.delete("/:id", async (req, res) => {
   await Note.findByIdAndDelete(req.params.id);
