@@ -18,9 +18,18 @@ describe("Notes API", () => {
     });
   });
 
+  beforeEach(async () => {
+    await Note.deleteMany({});
+
+    await Note.insertMany([
+      { title: "Note 1", content: "Content 1", isImportant: false },
+      { title: "Note 2", content: "Content 2", isImportant: false },
+    ]);
+  });
+
   afterAll(async () => {
     await mongoose.connection.close();
-    await new Promise(resolve => server.close(resolve)); // Ensure the server is closed after tests
+    await new Promise((resolve) => server.close(resolve)); // Ensure the server is closed after tests
   });
 
   test("GET / should return all notes", async () => {
@@ -35,18 +44,20 @@ describe("Notes API", () => {
   test("POST /notes should create a new note", async () => {
     const res = await request(app)
       .post("/notes")
-      .send({ title: "New Note", content: "New Content" })
+      .send({ title: "New Note", content: "New Content", isImportant: "true" })
       .set("Accept", "application/json");
-    expect(res.status).toBe(201);
-    expect(res.body).toBeDefined();
-    expect(res.body.title).toBe("New Note");
-    expect(res.body.content).toBe("New Content");
+    expect(res.status).toBe(302); // Expecting redirection
+    const notes = await Note.find();
+    expect(notes.length).toBe(3);
+    expect(notes[2].title).toBe("New Note");
+    expect(notes[2].content).toBe("New Content");
+    expect(notes[2].isImportant).toBe(true);
   });
 
   test("POST /notes/:id/important should mark a note as important", async () => {
     const newNote = await request(app)
       .post("/notes")
-      .send({ title: "Another Note", content: "Another Content" })
+      .send({ title: "Another Note", content: "Another Content", isImportant: false })
       .set("Accept", "application/json");
 
     const noteId = newNote.body._id;
