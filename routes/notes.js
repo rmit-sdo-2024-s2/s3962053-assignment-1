@@ -10,11 +10,11 @@ router.post("/notes", async (req, res) => {
   const note = new Note({
     title: req.body.title,
     content: req.body.content,
-    isImportant: req.body.isImportant === "true"
+    isImportant: req.body.isImportant === "true",
   });
   try {
     await note.save();
-    res.status(201).json(note);
+    res.redirect("/"); // Redirect to the main page after creating the note
   } catch (err) {
     res.status(400).send(err);
   }
