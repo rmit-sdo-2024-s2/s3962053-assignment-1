@@ -36,6 +36,7 @@ describe("Notes API", () => {
     const res = await request(app).get("/");
     expect(res.status).toBe(200);
     expect(res.body).toBeDefined();
+    expect(Array.isArray(res.body)).toBe(true); // Check if the body is an array
     expect(res.body.length).toBe(2);
     expect(res.body[0].title).toBe("Note 1");
     expect(res.body[1].title).toBe("Note 2");

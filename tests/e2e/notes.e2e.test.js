@@ -31,10 +31,10 @@ test.describe("E2E Test for Notes Application", () => {
 
   test("should create a new note", async ({ page }) => {
     await page.goto("http://localhost:4000/new");
-    await page.fill("input[name='title']", "Test Note");
-    await page.fill("textarea[name='content']", "This is a test note.");
-    await page.check("input[name='isImportant']");
-    await page.click("button[type='submit']");
+    await page.fill('input[name="title"]', "Test Note");
+    await page.fill('textarea[name="content"]', "This is a test note.");
+    await page.check('input[name="isImportant"]');
+    await page.click('button[type="submit"]');
 
     const fetch = await import("node-fetch").then(mod => mod.default);
     const response = await fetch("http://localhost:4000");

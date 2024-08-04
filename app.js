@@ -15,7 +15,7 @@ app.use(methodOverride("_method"));
 app.get("/", async (req, res) => {
   try {
     const notes = await Note.find().sort("createdAt"); // Sort by createdAt in ascending order
-    res.render("index", { notes }); // Render the notes using EJS template
+    res.render("index", { notes }); // Ensure notes are rendered
   } catch (err) {
     res.status(500).send(err);
   }
