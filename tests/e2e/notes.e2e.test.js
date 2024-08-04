@@ -46,7 +46,7 @@ test.describe("E2E Test for Notes Application", () => {
     expect(notes[notes.length - 1].isImportant).toBe(true);
   });
 
-  test("should mark a note as important via API", async ({ page }) => {
+  test("should mark a note as important via API", async () => { // Removed 'page' from parameters
     const fetch = await import("node-fetch").then(mod => mod.default);
 
     // Create a new note via API
@@ -62,7 +62,7 @@ test.describe("E2E Test for Notes Application", () => {
     const createdNote = await createNoteResponse.json();
 
     // Mark the note as important via API
-    const importantNoteResponse = await fetch(`http://localhost:4000/notes/${createdNote._id}/important`, {
+    await fetch(`http://localhost:4000/notes/${createdNote._id}/important`, { // Removed 'importantNoteResponse' assignment
       method: "POST",
     });
 
