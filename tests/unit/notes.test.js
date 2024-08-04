@@ -29,7 +29,7 @@ describe("Notes API", () => {
 
   afterAll(async () => {
     await mongoose.connection.close();
-    await new Promise((resolve) => server.close(resolve)); // Ensure the server is closed after tests
+    await new Promise(resolve => server.close(resolve)); // Ensure the server is closed after tests
   });
 
   test("GET / should return all notes", async () => {
@@ -46,7 +46,7 @@ describe("Notes API", () => {
       .post("/notes")
       .send({ title: "New Note", content: "New Content", isImportant: "true" })
       .set("Accept", "application/json");
-    expect(res.status).toBe(302); // Expecting redirection
+    expect(res.status).toBe(201);
     const notes = await Note.find();
     expect(notes.length).toBe(3);
     expect(notes[2].title).toBe("New Note");

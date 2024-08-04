@@ -10,11 +10,11 @@ router.post("/notes", async (req, res) => {
   const note = new Note({
     title: req.body.title,
     content: req.body.content,
-    isImportant: req.body.isImportant === "true",
+    isImportant: req.body.isImportant === "true"
   });
   try {
     await note.save();
-    res.redirect("/"); // Redirect to the main page after creating the note
+    res.status(201).json(note);
   } catch (err) {
     res.status(400).send(err);
   }
@@ -23,6 +23,9 @@ router.post("/notes", async (req, res) => {
 router.post("/notes/:id/important", async (req, res) => {
   try {
     const note = await Note.findById(req.params.id);
+    if (!note) {
+      return res.status(404).send("Note not found");
+    }
     note.isImportant = !note.isImportant;
     await note.save();
     res.redirect("/");
