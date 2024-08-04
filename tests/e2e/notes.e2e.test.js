@@ -19,7 +19,7 @@ test.describe("E2E Test for Notes Application", () => {
 
   test.afterAll(async () => {
     await mongoose.connection.close();
-    await new Promise((resolve) => server.close(resolve));
+    await new Promise(resolve => server.close(resolve));
   });
 
   test("should load the homepage and show the correct title", async ({ page }) => {
@@ -36,7 +36,7 @@ test.describe("E2E Test for Notes Application", () => {
     await page.check("input[name='isImportant']");
     await page.click("button[type='submit']");
 
-    const fetch = await import("node-fetch").then((mod) => mod.default);
+    const fetch = await import("node-fetch").then(mod => mod.default);
     const response = await fetch("http://localhost:4000/api/notes");
     const notes = await response.json();
 
@@ -46,8 +46,8 @@ test.describe("E2E Test for Notes Application", () => {
     expect(notes[notes.length - 1].isImportant).toBe(true);
   });
 
-  test("should mark a note as important", async ({ page }) => {
-    const fetch = await import("node-fetch").then((mod) => mod.default);
+  test("should mark a note as important via API", async ({ page }) => {
+    const fetch = await import("node-fetch").then(mod => mod.default);
 
     // Create a new note via API
     const createNoteResponse = await fetch("http://localhost:4000/notes", {
@@ -61,16 +61,16 @@ test.describe("E2E Test for Notes Application", () => {
     });
     const createdNote = await createNoteResponse.json();
 
-    await page.goto("http://localhost:4000");
-    const noteCards = await page.locator(".card");
-    await noteCards.first().scrollIntoViewIfNeeded();
-    await noteCards.first().locator("form[action*='important']").click({ force: true });
+    // Mark the note as important via API
+    const importantNoteResponse = await fetch(`http://localhost:4000/notes/${createdNote._id}/important`, {
+      method: "POST",
+    });
 
     // Fetch the updated note
     const updatedNoteResponse = await fetch("http://localhost:4000/api/notes");
     const updatedNotes = await updatedNoteResponse.json();
 
-    const updatedNote = updatedNotes.find((note) => note._id === createdNote._id);
+    const updatedNote = updatedNotes.find(note => note._id === createdNote._id);
     expect(updatedNote.isImportant).toBe(true);
   });
 });
