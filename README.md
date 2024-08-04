@@ -9,6 +9,12 @@ The pipeline is automatically triggered on the following events:
 - Push to any `feature/*` branch
 - Pull requests to the `main` branch
 
+## Installation
+Before running any commands, ensure you have Node.js installed. Then, install the necessary dependencies:
+```bash
+npm install
+```
+
 ## Commands and Their Functionality
 
 ### Linting
@@ -36,19 +42,22 @@ The pipeline is automatically triggered on the following events:
 ## Repository Structure
 S3962053-ASSIGNMENT-1/
 ├── .github/
-│ └── workflows/
-│ └── ci.yml
+│   └── workflows/
+│       └── ci.yml
 ├── models/
-│ └── note.js
+│   └── note.js
 ├── routes/
-│ └── notes.js
+│   └── notes.js
 ├── views/
-│ ├── index.ejs
-│ └── new.ejs
+│   ├── index.ejs
+│   └── new.ejs
 ├── tests/
-│ ├── unit/
-│ ├── integration/
-│ └── e2e/
+│   ├── unit/
+│   │   └── notes.test.js
+│   ├── integration/
+│   │   └── notes.integration.test.js
+│   └── e2e/
+│       └── notes.e2e.test.js
 ├── app.js
 ├── package-lock.json
 ├── package.json
@@ -57,7 +66,6 @@ S3962053-ASSIGNMENT-1/
 ├── .gitattributes
 ├── README.md
 └── analysis.txt
-
 
 ## How to Contribute
 - Create a new branch for your feature: `git checkout -b feature/your-feature-name`
