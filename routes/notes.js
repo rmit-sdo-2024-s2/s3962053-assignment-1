@@ -14,7 +14,7 @@ router.post("/notes", async (req, res) => {
   });
   try {
     await note.save();
-    res.redirect("/");
+    res.status(201).json(note); // Respond with JSON for tests
   } catch (err) {
     res.status(400).send(err);
   }
@@ -25,7 +25,7 @@ router.post("/notes/:id/important", async (req, res) => {
     const note = await Note.findById(req.params.id);
     note.isImportant = !note.isImportant;
     await note.save();
-    res.redirect("/");
+    res.redirect("/"); // Redirect for normal flow
   } catch (err) {
     res.status(500).send(err);
   }

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "build": "mkdir -p build && cp -r * build/",
+    "test": "npm run test-unit && npm run test-integration && npm run test-e2e",
     "test-lint": "eslint .",
     "test-unit": "jest --ci tests/unit --coverage --forceExit",
     "test-integration": "jest --ci tests/integration --coverage --forceExit",

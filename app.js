@@ -15,7 +15,17 @@ app.use(methodOverride("_method"));
 app.get("/", async (req, res) => {
   try {
     const notes = await Note.find().sort("createdAt"); // Sort by createdAt in ascending order
-    res.render("index", { notes }); // Ensure notes are rendered
+    res.status(200).render("index", { notes }); // Render the index page with notes
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+// Separate route for JSON response (for testing)
+app.get("/api/notes", async (req, res) => {
+  try {
+    const notes = await Note.find().sort("createdAt");
+    res.status(200).json(notes);
   } catch (err) {
     res.status(500).send(err);
   }

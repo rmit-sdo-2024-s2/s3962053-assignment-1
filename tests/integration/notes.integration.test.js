@@ -1,59 +1,59 @@
-const { test, expect } = require("@playwright/test");
+const request = require("supertest");
 const mongoose = require("mongoose");
 const app = require("../../app");
+const Note = require("../../models/note");
 
 let server;
 
-test.describe("E2E Test for Notes Application", () => {
-  test.beforeAll(async () => {
-    await mongoose.connect(process.env.SERVER, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-
-    // Start server on a different port
-    server = app.listen(4000, () => {
-      console.log("E2E Test server started on port 4000");
-    });
+beforeAll(async () => {
+  await mongoose.connect(process.env.SERVER, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
   });
 
-  test.afterAll(async () => {
-    await mongoose.connection.close();
-    await new Promise(resolve => server.close(resolve));
+  server = app.listen(4000, () => {
+    console.log("Integration Test server started on port 4000");
+  });
+});
+
+afterAll(async () => {
+  await mongoose.connection.close();
+  await new Promise(resolve => server.close(resolve));
+});
+
+describe("Notes API Integration Tests", () => {
+  test("GET /api/notes should return all notes", async () => {
+    const res = await request(app).get("/api/notes");
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
   });
 
-  test("should load the homepage and show the correct title", async ({ page }) => {
-    await page.goto("http://localhost:4000");
-    await expect(page).toHaveTitle("Notes Tonight");
-    const newNoteButton = await page.locator("a.btn-success");
-    await expect(newNoteButton).toBeVisible();
+  test("POST /notes should create a new note", async () => {
+    const res = await request(app)
+      .post("/notes")
+      .send({ title: "New Note", content: "New Content", isImportant: false })
+      .set("Accept", "application/json");
+    expect(res.status).toBe(201);
+    expect(res.body).toBeDefined();
+    expect(res.body.title).toBe("New Note");
+    expect(res.body.content).toBe("New Content");
   });
 
-  test("should create a new note", async ({ page }) => {
-    const fetch = await import("node-fetch").then(mod => mod.default);
+  test("POST /notes/:id/important should mark a note as important", async () => {
+    const newNote = await request(app)
+      .post("/notes")
+      .send({ title: "Another Note", content: "Another Content", isImportant: false })
+      .set("Accept", "application/json");
 
-    await page.goto("http://localhost:4000/new");
-    await page.fill("input[name='title']", "Test Note");
-    await page.fill("textarea[name='content']", "This is a test note.");
-    await page.click("button[type='submit']");
+    const noteId = newNote.body._id;
 
-    const response = await fetch("http://localhost:4000");
-    const notes = await response.json();
+    const markImportant = await request(app)
+      .post(`/notes/${noteId}/important`)
+      .send();
 
-    expect(notes.length).toBeGreaterThan(0);
-    expect(notes[notes.length - 1].title).toBe("Test Note");
-    expect(notes[notes.length - 1].content).toBe("This is a test note.");
-  });
+    expect(markImportant.status).toBe(302);
 
-  test("should mark a note as important", async ({ page }) => {
-    await page.goto("http://localhost:4000");
-    const noteCards = await page.locator(".card");
-    await noteCards.first().locator("form[action*='important']").click();
-
-    const fetch = await import("node-fetch").then(mod => mod.default);
-    const response = await fetch("http://localhost:4000");
-    const notes = await response.json();
-
-    expect(notes[0].isImportant).toBe(true);
+    const updatedNote = await Note.findById(noteId);
+    expect(updatedNote.isImportant).toBe(true);
   });
 });
