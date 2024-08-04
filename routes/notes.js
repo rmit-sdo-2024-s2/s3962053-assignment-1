@@ -14,7 +14,11 @@ router.post("/notes", async (req, res) => {
   });
   try {
     await note.save();
-    res.status(201).json(note); // Respond with JSON for tests
+    if (req.headers['accept'] && req.headers['accept'].includes('text/html')) {
+      res.redirect("/"); // Redirect for normal operation
+    } else {
+      res.status(201).json(note); // Respond with JSON for tests
+    }
   } catch (err) {
     res.status(400).send(err);
   }
