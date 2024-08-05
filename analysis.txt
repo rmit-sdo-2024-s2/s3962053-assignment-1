@@ -1,23 +1,23 @@
-# Analysis of the Problem
+Analysis of the Problem:
 
 Alpine Inc has faced several challenges due to the manual deployment process, which has resulted in missed critical releases and increased production issues. These challenges include:
 
-1. **Dependency on a single developer**: The deployment process depends heavily on the lead developer, Pete, which poses a risk if Pete is unavailable.
-2. **Missed releases**: Pete's absence led to missed critical releases, affecting the company's ability to deliver new features to clients on time.
-3. **Increased production issues**: Manual deployment has resulted in bugs being introduced into production, causing an increase in support calls and workload for the support and development teams.
-4. **Reduced team morale**: The increased workload and pressure to fix production issues have led to reduced morale among the support and development teams.
-5. **Impact on revenue**: The production issues and missed releases have had a negative impact on the company's revenue.
+1. Dependency on a single developer: The deployment process depends heavily on the lead developer, Pete, which poses a risk if Pete is unavailable.
+2. Missed releases: Pete's absence led to missed critical releases, affecting the company's ability to deliver new features to clients on time.
+3. Increased production issues: Manual deployment has resulted in bugs being introduced into production, causing an increase in support calls and workload for the support and development teams.
+4. Reduced team morale: The increased workload and pressure to fix production issues have led to reduced morale among the support and development teams.
+5. Impact on revenue: The production issues and missed releases have had a negative impact on the company's revenue.
 
-# Explain and Justify the Solution
+Explaination and Justification
 
 To address these challenges, a Continuous Integration (CI) pipeline has been proposed and implemented using GitHub Actions. This solution includes the following elements:
 
-1. **Automated Builds**: The CI pipeline automatically builds the application whenever changes are pushed to the repository. This reduces the dependency on a single developer and ensures consistent and repeatable builds.
-2. **Automated Testing**: The CI pipeline includes various testing stages (linting, unit testing, integration testing, and end-to-end testing) to catch bugs and issues early in the development process. This reduces the likelihood of introducing bugs into production.
-3. **Code Quality Checks**: The pipeline includes static code analysis using ESLint to enforce coding standards and catch potential issues early.
-4. **Artifact Generation**: The pipeline generates build artifacts only on the `main` branch, ensuring that only tested and verified code is deployed.
-5. **Branching Strategy**: The use of GitHub Flow encourages the use of feature branches and pull requests, ensuring that code changes are reviewed before being merged into the `main` branch.
-6. **End-to-End Testing**: The inclusion of end-to-end tests validates the application’s functionality from the user's perspective, ensuring that the application behaves as expected in a production-like environment.
-7. **Continuous Monitoring and Feedback**: The CI pipeline provides continuous feedback on the health of the application through build and test results, allowing the team to quickly address any issues that arise.
+1. Automated Builds: The CI pipeline automatically builds the application whenever changes are pushed to the repository. This reduces the dependency on a single developer and ensures consistent and repeatable builds.
+2. Automated Testing: The CI pipeline includes various testing stages (linting, unit testing, integration testing, and end-to-end testing) to catch bugs and issues early in the development process. This reduces the likelihood of introducing bugs into production.
+3. Code Quality Checks: The pipeline includes static code analysis using ESLint to enforce coding standards and catch potential issues early.
+4. Artifact Generation: The pipeline generates build artifacts only on the `main` branch, ensuring that only tested and verified code is deployed.
+5. Branching Strategy: The use of GitHub Flow encourages the use of feature branches and pull requests, ensuring that code changes are reviewed before being merged into the `main` branch.
+6. End-to-End Testing: The inclusion of end-to-end tests validates the application’s functionality from the user's perspective, ensuring that the application behaves as expected in a production-like environment.
+7. Continuous Monitoring and Feedback: The CI pipeline provides continuous feedback on the health of the application through build and test results, allowing the team to quickly address any issues that arise.
 
 This solution leverages SaaS tools to minimize the learning curve for the team and follows best practices in DevOps to improve the reliability and efficiency of the development and deployment processes. By automating the build, test, and deployment processes, we aim to increase release frequency, reduce production issues, improve team morale, and positively impact the company's revenue.
