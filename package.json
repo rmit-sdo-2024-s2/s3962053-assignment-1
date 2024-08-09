@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node src/app.js",
     "build": "mkdir -p build && rsync -av --exclude='build' . build/",
     "test": "npm run test-unit && npm run test-integration && npm run test-e2e",
     "test-lint": "eslint .",
