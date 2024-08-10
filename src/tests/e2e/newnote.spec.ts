@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('Complete Note Management Workflow', async ({ page }) => {
-  
+
   // Step 1: Go to the homepage
   await page.goto('http://localhost:3000/');
   
@@ -30,24 +30,25 @@ test('Complete Note Management Workflow', async ({ page }) => {
   
   // Step 5: Verify that the note is displayed on the homepage
   await expect(page).toHaveURL('http://localhost:3000/');
-  await expect(page.locator('.card-title', { hasText: 'E2E Test Title' })).toBeVisible();
-  await expect(page.locator('.badge-danger')).toBeVisible(); // Check that the note is marked as important
+  const noteCard = page.locator('.card').filter({ hasText: 'E2E Test Title' }).first();
+  await expect(noteCard.locator('.card-title')).toBeVisible();
+  await expect(noteCard.locator('.badge-danger')).toBeVisible(); // Check that the note is marked as important
   
   // Step 6: Mark the note as not important
-  await page.locator('text=Mark as Not Important').click();
-  await expect(page.locator('.badge-danger')).not.toBeVisible();
+  await noteCard.locator('text=Mark as Not Important').click();
+  await expect(noteCard.locator('.badge-danger')).not.toBeVisible();
   
   // Step 7: Verify that the note is still present in the list
-  await expect(page.locator('.card-title', { hasText: 'E2E Test Title' })).toBeVisible();
+  await expect(noteCard).toBeVisible();
   
   // Step 8: Delete the note
-  await page.locator('text=Delete').click();
+  await noteCard.locator('text=Delete').click();
   
   // Step 9: Verify that the note has been removed from the list
   await expect(page).toHaveURL('http://localhost:3000/');
-  await expect(page.locator('.card-title', { hasText: 'E2E Test Title' })).not.toBeVisible();
+  await expect(page.locator('.card').filter({ hasText: 'E2E Test Title' })).not.toBeVisible();
 
   // Step 10: Confirm no notes are displayed if all notes are deleted
   await expect(page.locator('.card')).toHaveCount(0); // No cards should be present if no notes exist
-  
+
 });
