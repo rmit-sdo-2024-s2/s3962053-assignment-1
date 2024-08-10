@@ -38,10 +38,14 @@ test('Complete Note Management Workflow', async ({ page }) => {
   await noteCard.locator('text=Delete').click();
 
   // Step 9: Verify that the note has been removed from the list
-  await expect(page.locator('.card-title', { hasText: 'E2E Test Title' })).not.toBeVisible();
-  
-  // Wait for the deletion to take effect
+  console.log('Checking that the note has been removed...');
   await page.waitForTimeout(2000); // Wait for 2 seconds before checking for deletion
+  
+  const remainingCards = await page.locator('.card').count();
+  console.log(`Remaining cards after deletion: ${remainingCards}`);
+
+  // Explicitly check that the specific card is not present
+  await expect(page.locator('.card').filter({ hasText: 'E2E Test Title' })).toHaveCount(0);
 
   // Step 10: Confirm no notes are displayed if all notes are deleted
   await expect(page.locator('.card')).toHaveCount(0, { timeout: 10000 }); // No cards should be present if no notes exist
