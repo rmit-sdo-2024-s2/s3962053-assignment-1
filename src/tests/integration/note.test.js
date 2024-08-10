@@ -17,10 +17,9 @@ describe('Note API Integration Tests', () => {
                 .send({
                     title: "[INTEGRATION TEST] New Note",
                     content: "This note was created at " + new Date(),
-                });
-
-            expect(res.statusCode).toEqual(302);
-            expect(res.headers['location']).toEqual('/');
+                })
+                .expect(302)
+                .expect('Location', '/');
         });
 
         it('Should not add a note without a title', async () => {
@@ -57,10 +56,9 @@ describe('Note API Integration Tests', () => {
 
             const res = await req
                 .post(`/notes/${note._id}/important`)
-                .send();
-
-            expect(res.statusCode).toEqual(302);
-            expect(res.headers['location']).toEqual('/');
+                .send()
+                .expect(302)
+                .expect('Location', '/');
 
             // Check if the note's importance has been toggled
             const updatedNote = await Note.findById(note._id);
@@ -78,10 +76,9 @@ describe('Note API Integration Tests', () => {
 
             const res = await req
                 .delete(`/${note._id}`)
-                .send();
-
-            expect(res.statusCode).toEqual(302);
-            expect(res.headers['location']).toEqual('/');
+                .send()
+                .expect(302)
+                .expect('Location', '/');
 
             // Check if the note has been deleted
             const deletedNote = await Note.findById(note._id);
@@ -96,11 +93,13 @@ describe('Note API Integration Tests', () => {
                 { title: "Note 2", content: "Content for note 2" }
             ]);
 
-            const res = await req.get('/');
+            const res = await req.get('/api/notes')  // Use the dedicated JSON endpoint
+                .set('Accept', 'application/json')
+                .expect(200)
+                .expect('Content-Type', /json/);
 
-            expect(res.statusCode).toEqual(200);
             expect(res.body).toBeDefined();
-            expect(res.body.length).toBe(2);
+            expect(res.body.length).toBe(2); // Expect 2 notes in the response
         });
     });
 });
