@@ -35,27 +35,33 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./src
 
       - name: Install Playwright browsers
         run: npx playwright install
+        working-directory: ./src
 
       - name: Run lint
         run: npm run test-lint
+        working-directory: ./src
 
       - name: Run unit tests
         run: npm run test-unit
+        working-directory: ./src
 
       - name: Run integration tests
         run: npm run test-integration
+        working-directory: ./src
 
       - name: Run end-to-end tests
         run: npm run test-e2e
+        working-directory: ./src
 
       - name: Upload code coverage
         uses: actions/upload-artifact@v2
         with:
           name: code-coverage
-          path: coverage
+          path: src/coverage
 
   build-artifacts:
     needs: build
@@ -72,12 +78,14 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: ./src
 
       - name: Build application
         run: npm run build
+        working-directory: ./src
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
           name: build-artifacts
-          path: build
+          path: src/build
