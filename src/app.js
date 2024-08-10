@@ -18,7 +18,8 @@ app.get('/', async (req, res) => {
   res.render('index', { notes: notes });
 });
 
-mongoose.connect(process.env.SERVER, {
+// Connect to MongoDB using the environment variable
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })

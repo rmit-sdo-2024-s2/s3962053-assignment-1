@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="1" failures="0" errors="0" time="1.426">
-  <testsuite name="Add Note" errors="0" failures="0" skipped="0" timestamp="2024-08-09T13:25:45" time="1.243" tests="1">
-    <testcase classname="Add Note Should add a new note and redirect to login" name="Add Note Should add a new note and redirect to login" time="0.118">
+<testsuites name="jest tests" tests="6" failures="0" errors="0" time="1.259">
+  <testsuite name="Note API Integration Tests" errors="0" failures="0" skipped="0" timestamp="2024-08-10T04:33:25" time="1.066" tests="6">
+    <testcase classname="Note API Integration Tests Add Note Should add a new note and redirect to homepage" name="Note API Integration Tests Add Note Should add a new note and redirect to homepage" time="0.126">
+    </testcase>
+    <testcase classname="Note API Integration Tests Add Note Should not add a note without a title" name="Note API Integration Tests Add Note Should not add a note without a title" time="0.011">
+    </testcase>
+    <testcase classname="Note API Integration Tests Add Note Should not add a note without content" name="Note API Integration Tests Add Note Should not add a note without content" time="0.007">
+    </testcase>
+    <testcase classname="Note API Integration Tests Toggle Note Importance Should toggle the importance of a note" name="Note API Integration Tests Toggle Note Importance Should toggle the importance of a note" time="0.029">
+    </testcase>
+    <testcase classname="Note API Integration Tests Delete Note Should delete a note and redirect to homepage" name="Note API Integration Tests Delete Note Should delete a note and redirect to homepage" time="0.015">
+    </testcase>
+    <testcase classname="Note API Integration Tests Get Notes Should get all notes" name="Note API Integration Tests Get Notes Should get all notes" time="0.015">
     </testcase>
   </testsuite>
 </testsuites>

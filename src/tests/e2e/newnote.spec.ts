@@ -10,14 +10,23 @@ test('Complete Note Management Workflow', async ({ page }) => {
   await expect(page).toHaveURL('http://localhost:3000/new');
 
   // Step 3: Attempt to submit an empty form to trigger validation
-  await page.locator('text=Save').click();
+  console.log("Checking if Create Note button is visible...");
+  await expect(page.locator('button[type="submit"]')).toBeVisible();
+  console.log("Create Note button is visible, attempting to click...");
+  await page.locator('button[type="submit"]').click();
+  
   await expect(page.locator('.form-control:invalid')).toHaveCount(2); // Expect 2 invalid fields (Title and Content)
 
   // Step 4: Fill in the form and create a new note
-  await page.locator('[placeholder="Enter Note Title"]').fill('E2E Test Title');
-  await page.locator('textarea[name="description"]').fill('E2E Test Description');
+  await page.waitForLoadState('load'); // Ensure the page is fully loaded
+  await page.locator('#title').waitFor({ state: 'visible' });
+  await page.locator('#title').fill('E2E Test Title');
+  console.log("Checking if description textarea is visible...");
+  await expect(page.locator('textarea[name="content"]')).toBeVisible(); // Ensure the textarea is visible
+  console.log("Textarea is visible, attempting to fill...");
+  await page.locator('textarea[name="content"]').fill('E2E Test Description');
   await page.locator('#isImportant').check(); // Mark the note as important
-  await page.locator('text=Save').click();
+  await page.locator('button[type="submit"]').click();
   
   // Step 5: Verify that the note is displayed on the homepage
   await expect(page).toHaveURL('http://localhost:3000/');
