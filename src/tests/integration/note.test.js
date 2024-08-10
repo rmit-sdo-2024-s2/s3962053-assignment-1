@@ -12,7 +12,7 @@ describe('Note API Integration Tests', () => {
 
     describe('Add Note', () => {
         it('Should add a new note and redirect to homepage', async () => {
-            const res = await req
+            await req
                 .post('/notes')
                 .send({
                     title: "[INTEGRATION TEST] New Note",
@@ -54,7 +54,7 @@ describe('Note API Integration Tests', () => {
             });
             await note.save();
 
-            const res = await req
+            await req
                 .post(`/notes/${note._id}/important`)
                 .send()
                 .expect(302)
@@ -74,7 +74,7 @@ describe('Note API Integration Tests', () => {
             });
             await note.save();
 
-            const res = await req
+            await req
                 .delete(`/${note._id}`)
                 .send()
                 .expect(302)
