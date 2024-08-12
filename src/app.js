@@ -8,6 +8,7 @@ const notesRouter = require('./routes/notes');
 const methodOverride = require('method-override');
 
 mongoose.set('strictQuery', true);
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());
