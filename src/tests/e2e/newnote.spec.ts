@@ -33,16 +33,17 @@ test('Complete Note Management Workflow', async ({ page }) => {
   // Step 7: Verify that the note is still present in the list
   await expect(noteCard).toBeVisible();
 
-  // Step 8: Delete the note
+    // Step 8: Delete the note
   await noteCard.locator('text=Delete').click();
-
+  
   // Step 9: Explicitly wait for the note to be removed and confirm the backend deletion
   console.log('Waiting for the note to be removed...');
-  await page.waitForTimeout(2000); // Wait for 2 seconds to let the deletion process complete
+  await page.waitForFunction(() => document.querySelectorAll('.card').length === 0, { timeout: 20000 }); // Wait for up to 20 seconds
   
   // Confirm the deletion by reloading the page to refresh the state
   await page.reload();
   
+  // Verify that no cards are present
   const remainingCards = await page.locator('.card').count();
   console.log(`Remaining cards after deletion: ${remainingCards}`);
   await expect(page.locator('.card')).toHaveCount(0, { timeout: 10000 }); // No cards should be present if no notes exist
