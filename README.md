@@ -122,7 +122,7 @@ yaml
   - The repository should be successfully checked out with the latest code ready for the next steps.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 1.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Stage 1.png" style="width: 1000px; height: auto;" />
   </div>
 
 2. Set Up Node.js Environment 
@@ -262,9 +262,10 @@ yaml
 - Expected Output:
   - The code coverage report should be successfully uploaded and available as an artifact in the CI pipeline.
 Screenshot:
-  <center>
+  <div style="text-align: center;">
       <img src="/img/CI Stage 9.png" style="width: 200px; height: auto;" />
-  <center>
+      <img src="/img/CI Stage 9.1.png" style="width: 200px; height: auto;" />
+  </div>
 
 10. Build Artifacts (Main Branch Only)
 - Action:
@@ -296,9 +297,13 @@ npm start
   - The `sudo systemctl start mongod` command ensures that the MongoDB service is running locally, which is required for the application to function properly.
   - The `npm start` command starts the Notes application, making it available at `http://localhost:3000` (or another specified port).
 - Expected Output:
- - Confirmation that the MongoDB service has started successfully.
- - A message indicating that the server is running and listening on the specified port.
+  - Confirmation that the MongoDB service has started successfully.
+  - A message indicating that the server is running and listening on the specified port.
 - Screenshot:
+  <div style="text-align: center;">
+      <img src="/img/npm start.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm start 2.png" style="width: 200px; height: auto;" />
+  </div>
 
 ### 2. Static Code Analysis (Linting)
 - Command: 
@@ -310,9 +315,13 @@ npm run test-lint
 - Purpose: The purpose of linting in this project is to maintain high code quality and prevent common issues that can arise from poorly written code. By catching these issues early in the CI pipeline, we ensure that only high-quality code is merged into the main branch.
 - Integration: Linting runs automatically on every push and pull request. If any linting errors are detected, the pipeline fails, and the issues must be resolved before the code can be merged.
 - Expected Output:
- -  If there are no issues, the output will indicate that all files passed the linting checks.
- -  If there are errors or warnings, the output will display them with details about the file and line number where the issue occurred.
+  - If there are no issues, the output will indicate that all files passed the linting checks.
+  - If there are errors or warnings, the output will display them with details about the file and line number where the issue occurred.
 - Screenshot:
+  <div style="text-align: center;">
+      <img src="/img/test lint.png" style="width: 200px; height: auto;" />
+  </div>
+
 
 ### 3. Unit Testing
 - Command:
@@ -328,6 +337,9 @@ npm run test-unit
   - Details of any failed tests, including error messages and stack traces.
   - Code coverage statistics indicating the percentage of code that was tested.
 - Screenshot: 
+  <div style="text-align: center;">
+      <img src="/img/test unit.png" style="width: 200px; height: auto;" />
+  </div>
 
 ### 4. Integration Testing
 - Command: 
@@ -343,6 +355,9 @@ npm run test-integration
   - Specific details on any failed tests or integration issues.
   - Code coverage statistics for the integrated components.
 - Screenshot: 
+  <div style="text-align: center;">
+      <img src="/img/test integration.png" style="width: 200px; height: auto;" />
+  </div>
 
 ### 5. End-to-End Testing
 - Command: 
@@ -357,6 +372,12 @@ npm run test-e2e
   - A summary of the end-to-end test results, showing which tests passed or failed.
   - Detailed error messages if any tests fail, including the part of the user flow that encountered an issue.
 - Screenshot:
+  <div style="text-align: center;">
+      <img src="/img/test e2e 1.png" style="width: 200px; height: auto;" />
+      <img src="/img/test e2e 2.png" style="width: 200px; height: auto;" />
+      <img src="/img/test e2e 3.png" style="width: 200px; height: auto;" />
+  </div>
+
 
 ### 6. Building and Deploying Artifacts
 - Command: 
@@ -370,6 +391,9 @@ npm run build
   - Confirmation that the build process completed without errors.
   - Details on the build artifacts, including their location and size.
 - Screenshot:
+  <div style="text-align: center;">
+      <img src="/img/build output.png" style="width: 200px; height: auto;" />
+  </div>
 
 ### 7. Running All Tests at Once
 - Command: 
@@ -384,7 +408,6 @@ npm run test
   - Unit Testing results (including the number of tests passed, failed, and the code coverage).
   - Integration Testing results (showing the interaction between various components and their code coverage).
   - End-to-End Testing results (verifying the full user workflow).
-- Screenshot:
 
 ## Contribution Guidelines
 
