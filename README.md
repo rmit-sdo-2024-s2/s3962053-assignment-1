@@ -275,7 +275,9 @@ yaml
   - The build process should complete without errors, and the artifacts should be uploaded successfully.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 1.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 10 result 1.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 10 result 2.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 10 result 3.png" style="width: 200px; height: auto;" />
   </div>
 
 ## Commands and Functionalities
@@ -295,8 +297,8 @@ npm start
   - A message indicating that the server is running and listening on the specified port.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/npm start.png" style="width: 200px; height: auto;" />
-      <img src="/img/npm start 2.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm start result 1.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm start result 2.png" style="width: 200px; height: auto;" />
   </div>
 
 ### 2. Static Code Analysis (Linting)
@@ -313,7 +315,7 @@ npm run test-lint
   - If there are errors or warnings, the output will display them with details about the file and line number where the issue occurred.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/test lint.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-lint result.png" style="width: 200px; height: auto;" />
   </div>
 
 
@@ -332,7 +334,7 @@ npm run test-unit
   - Code coverage statistics indicating the percentage of code that was tested.
 - Screenshot: 
   <div style="text-align: center;">
-      <img src="/img/test unit.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-unit result.png" style="width: 200px; height: auto;" />
   </div>
 
 ### 4. Integration Testing
@@ -350,7 +352,7 @@ npm run test-integration
   - Code coverage statistics for the integrated components.
 - Screenshot: 
   <div style="text-align: center;">
-      <img src="/img/test integration.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-integration result.png" style="width: 200px; height: auto;" />
   </div>
 
 ### 5. End-to-End Testing
@@ -367,9 +369,9 @@ npm run test-e2e
   - Detailed error messages if any tests fail, including the part of the user flow that encountered an issue.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/test e2e 1.png" style="width: 200px; height: auto;" />
-      <img src="/img/test e2e 2.png" style="width: 200px; height: auto;" />
-      <img src="/img/test e2e 3.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-e2e result 1.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-e2e result 2.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-e2e result 3.png" style="width: 200px; height: auto;" />
   </div>
 
 
@@ -386,7 +388,7 @@ npm run build
   - Details on the build artifacts, including their location and size.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/build output.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run build result.png" style="width: 200px; height: auto;" />
   </div>
 
 ### 7. Running All Tests at Once
@@ -402,6 +404,30 @@ npm run test
   - Unit Testing results (including the number of tests passed, failed, and the code coverage).
   - Integration Testing results (showing the interaction between various components and their code coverage).
   - End-to-End Testing results (verifying the full user workflow).
+
+## Test Reporting and Code Coverage
+
+### Playwright Reports
+- Generating the Report: Playwright automatically generates a report after the end-to-end tests are executed. The report provides detailed insights into each test case, including screenshots and logs for each step.
+- Viewing the Report:
+  - After running `npm run test-e2e`, navigate to the `playwright-report` directory to view the report.
+  - You can open the report in your browser by running the following command:
+  bash
+  ```
+  You can open the report in your browser by running the following command:
+  ```
+  - This will open an HTML report that allows you to navigate through each test case, view screenshots, and analyze any failures.
+- Screenshot:
+  <div style="text-align: center;">
+      <img src="/img/npm run test-e2e playwright report.png" style="width: 200px; height: auto;" />
+  </div>
+
+### Jest Code Coverage
+- Generating the Code Coverage Report: Code coverage is automatically generated when you run unit and integration tests using Jest.
+- Viewing the Report:
+  - After running npm run test-unit or npm run test-integration, navigate to the coverage/lcov-report/index.html file to view the detailed coverage report.
+  - Open the index.html file in your browser to see the coverage for each file in your codebase, including line-by-line details of which parts of the code were executed during the tests.
+- Screenshot
 
 ## Contribution Guidelines
 
