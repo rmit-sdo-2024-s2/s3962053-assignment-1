@@ -48,7 +48,7 @@ npm install
 ```
 
 3. Set up environment variables
-- Ensure you have a .env file in the src/ directory with the necessary environment variables configured. This file should include details like the MongoDB connection string and any other configuration variables your application requires.
+Ensure you have a .env file in the src/ directory with the necessary environment variables configured. This file should include details like the MongoDB connection string and any other configuration variables your application requires.
 
 4. Start the MongoDB Server:
 Before running the application, you need to start the MongoDB server. Use the following command:
@@ -62,7 +62,7 @@ bash
 ```
 npm start
 ```
-- The application should start successfully, and it should be accessible at http://localhost:3000 (or the port specified in your  environment variables).
+The application should start successfully, and it should be accessible at http://localhost:3000 (or the port specified in your  environment variables).
 
 ## Repository Structure
 ```
@@ -116,13 +116,13 @@ yaml
 - name: Checkout code
   uses: actions/checkout@v2
 ```
-Purpose:
-- This stage clones the repository to the GitHub runner, ensuring that the latest version of the code is available for subsequent stages.
-Expected Output:
-- The repository should be successfully checked out with the latest code ready for the next steps.
+- Purpose:
+  - This stage clones the repository to the GitHub runner, ensuring that the latest version of the code is available for subsequent stages.
+- Expected Output:
+  - The repository should be successfully checked out with the latest code ready for the next steps.
 
 2. Set Up Node.js Environment 
-Action:
+- Action:
 yaml
 ```
 - name: Set up Node.js
@@ -130,14 +130,14 @@ yaml
   with:
     node-version: 18
 ```
-Purpose:
-- This stage sets up the Node.js environment on the runner using Node.js version 18, which is necessary for running the application and its tests.
+- Purpose:
+  - This stage sets up the Node.js environment on the runner using Node.js version 18, which is necessary for running the application and its tests.
 Expected Output:
-- Node.js should be installed and configured correctly without errors.
+  - Node.js should be installed and configured correctly without errors.
 Screenshot:
 
 3. Install Dependencies
-Action:
+- Action:
 yaml
 ```
 - name: Install dependencies
@@ -147,84 +147,84 @@ yaml
   working-directory: ./src
 
 ```
-Purpose:
-- This stage installs all necessary dependencies for the project, including the Playwright dependencies needed for end-to-end testing.
-Expected Output:
-- All dependencies should be installed without any issues, preparing the environment for the following stages.
-Screenshot:
+- Purpose:
+  - This stage installs all necessary dependencies for the project, including the Playwright dependencies needed for end-to-end testing.
+- Expected Output:
+  - All dependencies should be installed without any issues, preparing the environment for the following stages.
+- Screenshot:
 
 4. Install Playwright Browsers
-Action:
+- Action:
 yaml
 ```
 - name: Install Playwright browsers
   run: npx playwright install
   working-directory: ./src
 ```
-Purpose:
-- This stage installs the required browsers for Playwright, which will be used in the end-to-end testing stage.
+- Purpose:
+  - This stage installs the required browsers for Playwright, which will be used in the end-to-end testing stage.
 Expected Output:
-- Playwright browsers should be installed successfully, with the environment ready for end-to-end tests.
+  - Playwright browsers should be installed successfully, with the environment ready for end-to-end tests.
 Screenshot:
 
 5. Run Linting
-Action:
+- Action:
 yaml
 ```
 - name: Run lint
   run: npm run test-lint
   working-directory: ./src
 ```
-Purpose:
-- This stage runs ESLint to check the codebase for any style or syntax errors. It helps maintain code quality by catching issues early.
-Expected Output:
-- The linting process should complete successfully if there are no issues. If there are any linting errors, they will be reported, and the pipeline may fail at this stage.
-Screenshot:
+- Purpose:
+  - This stage runs ESLint to check the codebase for any style or syntax errors. It helps maintain code quality by catching issues early.
+- Expected Output:
+  - The linting process should complete successfully if there are no issues. If there are any linting errors, they will be reported, and the pipeline may fail at this stage.
+- Screenshot:
 
 6. Run Unit Tests
-Action:
+- Action:
 yaml
 ```
 - name: Run unit tests
   run: npm run test-unit
   working-directory: ./src
 ```
-Purpose:
-- This stage runs unit tests using Jest, verifying that individual parts of the code function as expected.
-Expected Output:
-- The test results should indicate how many tests passed or failed. Code coverage information will also be displayed.
-Screenshot:
+- Purpose:
+  - This stage runs unit tests using Jest, verifying that individual parts of the code function as expected.
+- Expected Output:
+  - The test results should indicate how many tests passed or failed. Code coverage information will also be displayed.
+- Screenshot:
 
 7. Run Unit Tests
-Action:
+- Action:
 yaml
 ```
 - name: Run integration tests
   run: npm run test-integration
   working-directory: ./src
 ```
-Purpose:
-- This stage runs integration tests to ensure that different modules of the application work together correctly.
+- Purpose:
+  - This stage runs integration tests to ensure that different modules of the application work together correctly.
 Expected Output:
-- Integration tests should pass, showing that the application’s components are correctly integrated. Any failures will be reported in the output.
-Screenshot:
+  - Integration tests should pass, showing that the application’s components are correctly integrated. Any failures will be reported in the output.
+- Screenshot:
 
 8. Run End-to-End Tests
-Action:
+- Action:
 yaml
 ```
 - name: Run end-to-end tests
   run: npm run test-e2e
   working-directory: ./src
 ```
-Purpose:
-- This stage runs end-to-end tests using Playwright, simulating user interactions with the application to verify its overall behavior.
-Expected Output:
-- The results should show the success or failure of the end-to-end tests, with detailed error messages if any test fails.
-Screenshot:
+- Purpose:
+  - This stage runs end-to-end tests using Playwright, simulating user interactions with the application to verify its overall behavior.
+- Expected Output:
+  - The results should show the success or failure of the end-to-end tests, with detailed error messages if any test fails.
+- Screenshot:
 
 9. Upload Code Coverage
-Action:
+- Action:
 yaml
 ```
 - name: Upload code coverage
@@ -233,25 +233,25 @@ yaml
     name: code-coverage
     path: src/coverage
 ```
-Purpose:
-- This stage uploads the code coverage reports generated by Jest during the unit and integration testing stages as artifacts, which can be reviewed later.
-Expected Output:
-- The code coverage report should be successfully uploaded and available as an artifact in the CI pipeline.
+- Purpose:
+  - This stage uploads the code coverage reports generated by Jest during the unit and integration testing stages as artifacts, which can be reviewed later.
+- Expected Output:
+  - The code coverage report should be successfully uploaded and available as an artifact in the CI pipeline.
 Screenshot:
 
 10. Build Artifacts (Main Branch Only)
-Action:
+- Action:
 yaml
 ```
 - name: Build application
   run: npm run build
   working-directory: ./src
 ```
-Purpose:   
-- This stage builds the application and uploads the build artifacts. It only runs when changes are pushed to the main branch, ensuring that only tested and approved code is packaged for deployment.
-Expected Output:
-- The build process should complete without errors, and the artifacts should be uploaded successfully.
-Screenshot:
+- Purpose:   
+  - This stage builds the application and uploads the build artifacts. It only runs when changes are pushed to the main branch, ensuring that only tested and approved code is packaged for deployment.
+- Expected Output:
+  - The build process should complete without errors, and the artifacts should be uploaded successfully.
+- Screenshot:
 
 ### Code Coverage
 - The code coverage reports generated during the unit and integration testing stages help ensure that the most critical parts of the codebase are being tested. Reviewing these reports can identify areas that may need additional testing.
@@ -259,7 +259,7 @@ Screenshot:
 
 ## Running the CI Pipeline Locally / Commands and Functionalities
 
-### 1. Starting the Application
+### 1.Starting the Application
 - Command:
 bash
 ```
@@ -267,14 +267,14 @@ sudo systemctl start mongod
 npm start
 ```
 - Purpose:
-+ The `sudo systemctl start mongod` command ensures that the MongoDB service is running locally, which is required for the application to function properly.
-+ The `npm start` command starts the Notes application, making it available at `http://localhost:3000` (or another specified port).
+  - The `sudo systemctl start mongod` command ensures that the MongoDB service is running locally, which is required for the application to function properly.
+  - The `npm start` command starts the Notes application, making it available at `http://localhost:3000` (or another specified port).
 - Expected Output:
-+ Confirmation that the MongoDB service has started successfully.
-+ A message indicating that the server is running and listening on the specified port.
-- Screenshot
+ - Confirmation that the MongoDB service has started successfully.
+ - A message indicating that the server is running and listening on the specified port.
+- Screenshot:
 
-### 2. Static Code Analysis (Linting)
+### 2.Static Code Analysis (Linting)
 - Command: 
 bash
 ```
@@ -298,9 +298,9 @@ npm run test-unit
 - Purpose: Unit tests help to ensure that each individual function in the application works correctly. In the context of the Notes application, this means verifying that each function related to note management behaves as expected, independent of other parts of the system.
 - Integration: Unit tests are automatically executed as part of the CI pipeline whenever changes are pushed or a pull request is made. This helps to catch and fix issues early, before they can affect other parts of the application or be deployed to production.
 - Expected Output:
-+ A summary of the test results, including the number of tests passed, failed, and skipped.
-+ Details of any failed tests, including error messages and stack traces.
-+ Code coverage statistics indicating the percentage of code that was tested.
+  - A summary of the test results, including the number of tests passed, failed, and skipped.
+  - Details of any failed tests, including error messages and stack traces.
+  - Code coverage statistics indicating the percentage of code that was tested.
 - Screenshot: 
 
 ### 4. Integration Testing
@@ -313,9 +313,9 @@ npm run test-integration
 - Purpose: These tests are critical for validating that the Notes application functions correctly as a whole, rather than just in isolated units. This is particularly important for a web application where the frontend, backend, and database must all work together seamlessly.
 - Integration: Integration tests run as part of the CI pipeline to validate the interactions between components. Any failure in these tests indicates a potential issue in how the parts of the application work together, which must be resolved before proceeding.
 - Expected Output:
-+ A summary of the integration test results, showing the number of tests that passed, failed, or were skipped.
-+ Specific details on any failed tests or integration issues.
-+ Code coverage statistics for the integrated components.
+  - A summary of the integration test results, showing the number of tests that passed, failed, or were skipped.
+  - Specific details on any failed tests or integration issues.
+  - Code coverage statistics for the integrated components.
 - Screenshot: 
 
 ### 5. End-to-End Testing
@@ -328,8 +328,8 @@ npm run test-e2e
 - Purpose: End-to-end tests ensure that the entire application, including all its components, functions correctly in a production-like environment. This is the final validation step to ensure that users will not encounter issues when using the application.
 - Integration: End-to-end tests are run as part of the CI pipeline to validate the full application workflow. The pipeline will fail if any of these tests fail, ensuring that only fully functional and user-ready code is deployed.
 - Expected Output:
-+ A summary of the end-to-end test results, showing which tests passed or failed.
-+ Detailed error messages if any tests fail, including the part of the user flow that encountered an issue.
+  - A summary of the end-to-end test results, showing which tests passed or failed.
+  - Detailed error messages if any tests fail, including the part of the user flow that encountered an issue.
 - Screenshot:
 
 ### 6. Building and Deploying Artifacts
@@ -341,8 +341,8 @@ npm run build
 - Purpose: Generates build artifacts for deployment, ensuring the application is packaged correctly.
 - Integration: The build process is automatically triggered in the CI pipeline but is restricted to the main branch to ensure that only tested and approved code is deployed.
 - Expected Output:
-+ Confirmation that the build process completed without errors.
-+ Details on the build artifacts, including their location and size.
+  - Confirmation that the build process completed without errors.
+  - Details on the build artifacts, including their location and size.
 - Screenshot:
 
 ### 7. Running All Tests at Once
@@ -354,10 +354,10 @@ npm run test
 - Tool: ESLint, Jest, Playwright
 - Purpose: This command sequentially runs all the tests configured in the pipeline: linting, unit tests, integration tests, and end-to-end tests. It's a comprehensive command to ensure that all aspects of the application are functioning correctly.
 - Expected Output:
-+ Linting results (whether any style issues or potential errors were found).
-+ Unit Testing results (including the number of tests passed, failed, and the code coverage).
-+ Integration Testing results (showing the interaction between various components and their code coverage).
-+ End-to-End Testing results (verifying the full user workflow).
+  - Linting results (whether any style issues or potential errors were found).
+  - Unit Testing results (including the number of tests passed, failed, and the code coverage).
+  - Integration Testing results (showing the interaction between various components and their code coverage).
+  - End-to-End Testing results (verifying the full user workflow).
 - Screenshot:
 
 ## Contribution Guidelines
@@ -414,49 +414,3 @@ For any questions or support, please contact Gia Tin Huynh Duc at s3962053@rmit.
 ## 2. Heading
 ### 2.1 Subheading 
 ### 2.2 Subheading 
-
-Certainly! Let's move on to the CI Pipeline Configurations section. This part will cover how the pipeline is set up, what triggers it, and a detailed explanation of each stage in the pipeline.
-
-3. CI Pipeline Configurations
-The CI pipeline for this project is defined in the .github/workflows/ci-pipeline.yml file. It automates various tasks such as linting, testing, and building the application. This section explains how the pipeline is configured, what triggers it, and what each stage does.
-
-3.1 Pipeline Triggers
-The CI pipeline is automatically triggered on the following events:
-
-Push to the main branch: This includes any direct commits to the main branch.
-Push to any feature/* branch: This ensures that new features are tested before being merged into the main branch.
-Pull requests to the main branch: Any pull request targeting the main branch will trigger the pipeline to validate the changes.
-3.2 Pipeline Stages
-The pipeline consists of several stages, each responsible for a specific task in the CI process. Here’s a breakdown of each stage:
-
-1. Checkout Code
-Action:
-
-yaml
-Copy code
-- name: Checkout code
-  uses: actions/checkout@v2
-Purpose:
-
-This stage clones the repository to the GitHub runner, ensuring that the latest version of the code is available for subsequent stages.
-Expected Output:
-
-The repository should be successfully checked out with the latest code ready for the next steps.
-Screenshot: (This would be the output of the pipeline showing successful code checkout)
-
-2. Set Up Node.js Environment
-Action:
-
-yaml
-Copy code
-- name: Set up Node.js
-  uses: actions/setup-node@v2
-  with:
-    node-version: 18
-Purpose:
-
-This stage sets up the Node.js environment on the runner using Node.js version 18, which is necessary for running the application and its tests.
-Expected Output:
-
-Node.js should be installed and configured correctly without errors.
-Screenshot: (Include a screenshot of the pipeline successfully setting up Node.js)
