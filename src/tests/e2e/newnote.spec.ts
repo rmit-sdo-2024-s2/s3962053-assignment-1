@@ -3,6 +3,8 @@ import { test, expect } from '@playwright/test';
 import mongoose from 'mongoose';
 import Note from '../../models/note';
 
+mongoose.set('strictQuery', true);
+
 // Before all tests, connect to MongoDB
 test.beforeAll(async () => {
     console.log('Connecting to MongoDB...');
