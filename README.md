@@ -6,7 +6,6 @@
 - Full Name/Names: Gia Tin Huynh Duc
 - Student ID/IDs: 3962053
 
-
 ## Overview
 
 This repository contains the source code for the Alpine Inc Notes Application, along with a Continuous Integration (CI) pipeline configured using GitHub Actions. The CI pipeline automates the build, testing, and artifact generation processes, ensuring high-quality and reliable deployments. The application is built using Node.js, Express, and MongoDB, and includes comprehensive unit, integration, and end-to-end tests.
@@ -16,14 +15,9 @@ This repository contains the source code for the Alpine Inc Notes Application, a
 1. [Installation and Setup](#installation-and-setup)
 2. [Repository Structure](#repository-structure)
 3. [CI Pipeline Configurations](#ci-pipeline-configurations)
-   - [Linting](#linting)
-   - [Unit Testing](#unit-testing)
-   - [Integration Testing](#integration-testing)
-   - [End-to-End Testing](#end-to-end-testing)
-   - [Code Coverage](#code-coverage)
-   - [Build](#build)
-4. [Contribution Guidelines](#contribution-guidelines)
-5. [Contact Information](#contact-information)
+4. [Commands and Functionalities](#commands-and-functionalities)
+5. [Contribution Guidelines](#contribution-guidelines)
+6. [Contact Information](#contact-information)
 
 ## Installation and Setup
  
@@ -122,7 +116,7 @@ yaml
   - The repository should be successfully checked out with the latest code ready for the next steps.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 1.png" style="width: 1000px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 1 result.png" style="width: auto; height: auto;" />
   </div>
 
 2. Set Up Node.js Environment 
@@ -140,7 +134,7 @@ Expected Output:
   - Node.js should be installed and configured correctly without errors.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 2.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 2 result.png" style="width: 200px; height: auto;" />
   </div>
 
 3. Install Dependencies
@@ -159,7 +153,7 @@ yaml
   - All dependencies should be installed without any issues, preparing the environment for the following stages.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 3.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 3 result.png" style="width: 200px; height: auto;" />
   </div>
 
 4. Install Playwright Browsers
@@ -176,7 +170,7 @@ yaml
   - Playwright browsers should be installed successfully, with the environment ready for end-to-end tests.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 4.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 4 result.png" style="width: 200px; height: auto;" />
   </div>
 
 5. Run Linting
@@ -193,7 +187,7 @@ yaml
   - The linting process should complete successfully if there are no issues. If there are any linting errors, they will be reported, and the pipeline may fail at this stage.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 5.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 5 result.png" style="width: 200px; height: auto;" />
   </div>
 
 6. Run Unit Tests
@@ -210,7 +204,7 @@ yaml
   - The test results should indicate how many tests passed or failed. Code coverage information will also be displayed.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 6.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 6 result.png" style="width: 200px; height: auto;" />
   </div>
 
 7. Run Unit Tests
@@ -227,7 +221,7 @@ Expected Output:
   - Integration tests should pass, showing that the application’s components are correctly integrated. Any failures will be reported in the output.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 7.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 7 result.png" style="width: 200px; height: auto;" />
   </div>
 
 8. Run End-to-End Tests
@@ -244,7 +238,7 @@ yaml
   - The results should show the success or failure of the end-to-end tests, with detailed error messages if any test fails.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 8.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 8 result.png" style="width: 200px; height: auto;" />
   </div>
 
 9. Upload Code Coverage
@@ -263,8 +257,8 @@ yaml
   - The code coverage report should be successfully uploaded and available as an artifact in the CI pipeline.
 Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Stage 9.png" style="width: 200px; height: auto;" />
-      <img src="/img/CI Stage 9.1.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 9 result 1.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 9 result 2.png" style="width: 200px; height: auto;" />
   </div>
 
 10. Build Artifacts (Main Branch Only)
@@ -284,7 +278,7 @@ yaml
       <img src="/img/CI Stage 1.png" style="width: 200px; height: auto;" />
   </div>
 
-## Commands and Functionalities / Running the CI Pipeline Locally 
+## Commands and Functionalities
 
 ### 1. Starting the Application
 - Command:
