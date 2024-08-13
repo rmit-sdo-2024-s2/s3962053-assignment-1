@@ -121,7 +121,9 @@ yaml
 - Expected Output:
   - The repository should be successfully checked out with the latest code ready for the next steps.
 - Screenshot:
-    <img src="/img/CI Stage 1.png" style="height: 70px;"/>
+  <div style="text-align: center;">
+      <img src="/img/CI Stage 1.png" style="width: 200px; height: auto;" />
+  </div>
 
 2. Set Up Node.js Environment 
 - Action:
@@ -136,8 +138,10 @@ yaml
   - This stage sets up the Node.js environment on the runner using Node.js version 18, which is necessary for running the application and its tests.
 Expected Output:
   - Node.js should be installed and configured correctly without errors.
-Screenshot:
-    <img src="/img/CI Stage 2.png" style="height: 70px;"/>
+- Screenshot:
+  <div style="text-align: center;">
+      <img src="/img/CI Stage 2.png" style="width: 200px; height: auto;" />
+  </div>
 
 3. Install Dependencies
 - Action:
@@ -154,7 +158,9 @@ yaml
 - Expected Output:
   - All dependencies should be installed without any issues, preparing the environment for the following stages.
 - Screenshot:
-    <img src="/img/CI Stage 3.png" style="height: 70px;"/>
+  <div style="text-align: center;">
+      <img src="/img/CI Stage 3.png" style="width: 200px; height: auto;" />
+  </div>
 
 4. Install Playwright Browsers
 - Action:
@@ -166,10 +172,12 @@ yaml
 ```
 - Purpose:
   - This stage installs the required browsers for Playwright, which will be used in the end-to-end testing stage.
-Expected Output:
+- Expected Output:
   - Playwright browsers should be installed successfully, with the environment ready for end-to-end tests.
-Screenshot:
-    <img src="/img/CI Stage 4.png" style="height: 70px;"/>
+- Screenshot:
+  <div style="text-align: center;">
+      <img src="/img/CI Stage 4.png" style="width: 200px; height: auto;" />
+  </div>
 
 5. Run Linting
 - Action:
@@ -184,7 +192,9 @@ yaml
 - Expected Output:
   - The linting process should complete successfully if there are no issues. If there are any linting errors, they will be reported, and the pipeline may fail at this stage.
 - Screenshot:
-    <img src="/img/CI Stage 5.png" style="height: 70px;"/>
+  <div style="text-align: center;">
+      <img src="/img/CI Stage 5.png" style="width: 200px; height: auto;" />
+  </div>
 
 6. Run Unit Tests
 - Action:
@@ -199,7 +209,9 @@ yaml
 - Expected Output:
   - The test results should indicate how many tests passed or failed. Code coverage information will also be displayed.
 - Screenshot:
-    <img src="/img/CI Stage 6.png" style="height: 70px;"/>
+  <div style="text-align: center;">
+      <img src="/img/CI Stage 6.png" style="width: 200px; height: auto;" />
+  </div>
 
 7. Run Unit Tests
 - Action:
@@ -214,7 +226,9 @@ yaml
 Expected Output:
   - Integration tests should pass, showing that the application’s components are correctly integrated. Any failures will be reported in the output.
 - Screenshot:
-    <img src="/img/CI Stage 7.png" style="height: 70px;"/>
+  <div style="text-align: center;">
+      <img src="/img/CI Stage 7.png" style="width: 200px; height: auto;" />
+  </div>
 
 8. Run End-to-End Tests
 - Action:
@@ -229,7 +243,9 @@ yaml
 - Expected Output:
   - The results should show the success or failure of the end-to-end tests, with detailed error messages if any test fails.
 - Screenshot:
-    <img src="/img/CI Stage 8.png" style="height: 70px;"/>
+  <div style="text-align: center;">
+      <img src="/img/CI Stage 8.png" style="width: 200px; height: auto;" />
+  </div>
 
 9. Upload Code Coverage
 - Action:
@@ -246,7 +262,9 @@ yaml
 - Expected Output:
   - The code coverage report should be successfully uploaded and available as an artifact in the CI pipeline.
 Screenshot:
-    <img src="/img/CI Stage 9.png" style="height: 70px;"/>
+  <div style="text-align: center;">
+      <img src="/img/CI Stage 9.png" style="width: 200px; height: auto;" />
+  </div>
 
 10. Build Artifacts (Main Branch Only)
 - Action:
@@ -261,7 +279,9 @@ yaml
 - Expected Output:
   - The build process should complete without errors, and the artifacts should be uploaded successfully.
 - Screenshot:
-    <img src="/img/CI Stage 10.png" style="height: 70px;"/>
+  <div style="text-align: center;">
+      <img src="/img/CI Stage 1.png" style="width: 200px; height: auto;" />
+  </div>
 
 ## Running the CI Pipeline Locally / Commands and Functionalities
 
