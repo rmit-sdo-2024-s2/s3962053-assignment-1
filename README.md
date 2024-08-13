@@ -108,7 +108,7 @@ Action:
 yaml
 ```
 - name: Checkout code
-  uses: actions/checkout@v2
+  uses: actions/checkout@v4
 ```
 - Purpose:
   - This stage clones the repository to the GitHub runner, ensuring that the latest version of the code is available for subsequent stages.
@@ -124,7 +124,7 @@ yaml
 yaml
 ```
 - name: Set up Node.js
-  uses: actions/setup-node@v2
+  uses: actions/setup-node@v4
   with:
     node-version: 18
 ```
@@ -247,7 +247,7 @@ yaml
 yaml
 ```
 - name: Upload code coverage
-  uses: actions/upload-artifact@v2
+  uses: actions/upload-artifact@v4
   with:
     name: code-coverage
     path: src/coverage
