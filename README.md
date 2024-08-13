@@ -120,6 +120,8 @@ yaml
   - This stage clones the repository to the GitHub runner, ensuring that the latest version of the code is available for subsequent stages.
 - Expected Output:
   - The repository should be successfully checked out with the latest code ready for the next steps.
+- Screenshot:
+    <img src="/img/CI Stage 1.png" style="height: 70px;"/>
 
 2. Set Up Node.js Environment 
 - Action:
@@ -135,6 +137,7 @@ yaml
 Expected Output:
   - Node.js should be installed and configured correctly without errors.
 Screenshot:
+    <img src="/img/CI Stage 2.png" style="height: 70px;"/>
 
 3. Install Dependencies
 - Action:
@@ -145,13 +148,13 @@ yaml
         npm install
         npx playwright install-deps
   working-directory: ./src
-
 ```
 - Purpose:
   - This stage installs all necessary dependencies for the project, including the Playwright dependencies needed for end-to-end testing.
 - Expected Output:
   - All dependencies should be installed without any issues, preparing the environment for the following stages.
 - Screenshot:
+    <img src="/img/CI Stage 3.png" style="height: 70px;"/>
 
 4. Install Playwright Browsers
 - Action:
@@ -166,6 +169,7 @@ yaml
 Expected Output:
   - Playwright browsers should be installed successfully, with the environment ready for end-to-end tests.
 Screenshot:
+    <img src="/img/CI Stage 4.png" style="height: 70px;"/>
 
 5. Run Linting
 - Action:
@@ -180,6 +184,7 @@ yaml
 - Expected Output:
   - The linting process should complete successfully if there are no issues. If there are any linting errors, they will be reported, and the pipeline may fail at this stage.
 - Screenshot:
+    <img src="/img/CI Stage 5.png" style="height: 70px;"/>
 
 6. Run Unit Tests
 - Action:
@@ -194,6 +199,7 @@ yaml
 - Expected Output:
   - The test results should indicate how many tests passed or failed. Code coverage information will also be displayed.
 - Screenshot:
+    <img src="/img/CI Stage 6.png" style="height: 70px;"/>
 
 7. Run Unit Tests
 - Action:
@@ -208,6 +214,7 @@ yaml
 Expected Output:
   - Integration tests should pass, showing that the application’s components are correctly integrated. Any failures will be reported in the output.
 - Screenshot:
+    <img src="/img/CI Stage 7.png" style="height: 70px;"/>
 
 8. Run End-to-End Tests
 - Action:
@@ -222,6 +229,7 @@ yaml
 - Expected Output:
   - The results should show the success or failure of the end-to-end tests, with detailed error messages if any test fails.
 - Screenshot:
+    <img src="/img/CI Stage 8.png" style="height: 70px;"/>
 
 9. Upload Code Coverage
 - Action:
@@ -238,6 +246,7 @@ yaml
 - Expected Output:
   - The code coverage report should be successfully uploaded and available as an artifact in the CI pipeline.
 Screenshot:
+    <img src="/img/CI Stage 9.png" style="height: 70px;"/>
 
 10. Build Artifacts (Main Branch Only)
 - Action:
@@ -252,14 +261,11 @@ yaml
 - Expected Output:
   - The build process should complete without errors, and the artifacts should be uploaded successfully.
 - Screenshot:
-
-### Code Coverage
-- The code coverage reports generated during the unit and integration testing stages help ensure that the most critical parts of the codebase are being tested. Reviewing these reports can identify areas that may need additional testing.
-- Screenshot: 
+    <img src="/img/CI Stage 10.png" style="height: 70px;"/>
 
 ## Running the CI Pipeline Locally / Commands and Functionalities
 
-### 1.Starting the Application
+### 1. Starting the Application
 - Command:
 bash
 ```
@@ -274,7 +280,7 @@ npm start
  - A message indicating that the server is running and listening on the specified port.
 - Screenshot:
 
-### 2.Static Code Analysis (Linting)
+### 2. Static Code Analysis (Linting)
 - Command: 
 bash
 ```
