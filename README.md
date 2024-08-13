@@ -134,7 +134,7 @@ Expected Output:
   - Node.js should be installed and configured correctly without errors.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Pipeline Stage 2 result.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 2 result.png" style="width: 1000px; height: auto;" />
   </div>
 
 3. Install Dependencies
@@ -153,7 +153,7 @@ yaml
   - All dependencies should be installed without any issues, preparing the environment for the following stages.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Pipeline Stage 3 result.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 3 result.png" style="width: 1000px; height: auto;" />
   </div>
 
 4. Install Playwright Browsers
@@ -170,7 +170,7 @@ yaml
   - Playwright browsers should be installed successfully, with the environment ready for end-to-end tests.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Pipeline Stage 4 result.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 4 result.png" style="width: 1000px; height: auto;" />
   </div>
 
 5. Run Linting
@@ -187,7 +187,7 @@ yaml
   - The linting process should complete successfully if there are no issues. If there are any linting errors, they will be reported, and the pipeline may fail at this stage.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Pipeline Stage 5 result.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 5 result.png" style="width: 1000px; height: auto;" />
   </div>
 
 6. Run Unit Tests
@@ -204,10 +204,10 @@ yaml
   - The test results should indicate how many tests passed or failed. Code coverage information will also be displayed.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Pipeline Stage 6 result.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 6 result.png" style="width: 1000px; height: auto;" />
   </div>
 
-7. Run Unit Tests
+7. Run Integration Tests
 - Action:
 yaml
 ```
@@ -221,7 +221,7 @@ Expected Output:
   - Integration tests should pass, showing that the application’s components are correctly integrated. Any failures will be reported in the output.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Pipeline Stage 7 result.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 7 result.png" style="width: 1000px; height: auto;" />
   </div>
 
 8. Run End-to-End Tests
@@ -238,7 +238,8 @@ yaml
   - The results should show the success or failure of the end-to-end tests, with detailed error messages if any test fails.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Pipeline Stage 8 result.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 8 result 1.png" style="width: 1000px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 8 result 2.png" style="width: 1000px; height: auto;" />
   </div>
 
 9. Upload Code Coverage
@@ -257,8 +258,7 @@ yaml
   - The code coverage report should be successfully uploaded and available as an artifact in the CI pipeline.
 Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Pipeline Stage 9 result 1.png" style="width: 200px; height: auto;" />
-      <img src="/img/CI Pipeline Stage 9 result 2.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 9 result.png" style="width: 1000px; height: auto;" />
   </div>
 
 10. Build Artifacts (Main Branch Only)
@@ -275,9 +275,9 @@ yaml
   - The build process should complete without errors, and the artifacts should be uploaded successfully.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/CI Pipeline Stage 10 result 1.png" style="width: 200px; height: auto;" />
-      <img src="/img/CI Pipeline Stage 10 result 2.png" style="width: 200px; height: auto;" />
-      <img src="/img/CI Pipeline Stage 10 result 3.png" style="width: 200px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 10 result 1.png" style="width: 1000px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 10 result 2.png" style="width: 1000px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 10 result 3.png" style="width: 1000px; height: auto;" />
   </div>
 
 ## Commands and Functionalities
@@ -297,8 +297,8 @@ npm start
   - A message indicating that the server is running and listening on the specified port.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/npm start result 1.png" style="width: 200px; height: auto;" />
-      <img src="/img/npm start result 2.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm start result 1.png" style="width: 1000px; height: auto;" />
+      <img src="/img/npm start result 2.png" style="width: 1000px; height: auto;" />
   </div>
 
 ### 2. Static Code Analysis (Linting)
@@ -315,7 +315,7 @@ npm run test-lint
   - If there are errors or warnings, the output will display them with details about the file and line number where the issue occurred.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/npm run test-lint result.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-lint result.png" style="width: 1000px; height: auto;" />
   </div>
 
 
@@ -334,7 +334,7 @@ npm run test-unit
   - Code coverage statistics indicating the percentage of code that was tested.
 - Screenshot: 
   <div style="text-align: center;">
-      <img src="/img/npm run test-unit result.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-unit result.png" style="width: 1000px; height: auto;" />
   </div>
 
 ### 4. Integration Testing
@@ -352,7 +352,7 @@ npm run test-integration
   - Code coverage statistics for the integrated components.
 - Screenshot: 
   <div style="text-align: center;">
-      <img src="/img/npm run test-integration result.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-integration result.png" style="width: 1000px; height: auto;" />
   </div>
 
 ### 5. End-to-End Testing
@@ -369,9 +369,9 @@ npm run test-e2e
   - Detailed error messages if any tests fail, including the part of the user flow that encountered an issue.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/npm run test-e2e result 1.png" style="width: 200px; height: auto;" />
-      <img src="/img/npm run test-e2e result 2.png" style="width: 200px; height: auto;" />
-      <img src="/img/npm run test-e2e result 3.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-e2e result 1.png" style="width: 1000px; height: auto;" />
+      <img src="/img/npm run test-e2e result 2.png" style="width: 1000px; height: auto;" />
+      <img src="/img/npm run test-e2e result 3.png" style="width: 1000px; height: auto;" />
   </div>
 
 
@@ -388,7 +388,7 @@ npm run build
   - Details on the build artifacts, including their location and size.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/npm run build result.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run build result.png" style="width: 1000px; height: auto;" />
   </div>
 
 ### 7. Running All Tests at Once
@@ -419,15 +419,18 @@ npm run test
   - This will open an HTML report that allows you to navigate through each test case, view screenshots, and analyze any failures.
 - Screenshot:
   <div style="text-align: center;">
-      <img src="/img/npm run test-e2e playwright report.png" style="width: 200px; height: auto;" />
+      <img src="/img/npm run test-e2e playwright report.png" style="width: 1000px; height: auto;" />
   </div>
 
-### Jest Code Coverage
+### Jest Code Coverage Report
 - Generating the Code Coverage Report: Code coverage is automatically generated when you run unit and integration tests using Jest.
 - Viewing the Report:
   - After running npm run test-unit or npm run test-integration, navigate to the coverage/lcov-report/index.html file to view the detailed coverage report.
   - Open the index.html file in your browser to see the coverage for each file in your codebase, including line-by-line details of which parts of the code were executed during the tests.
-- Screenshot
+- Screenshot:
+  <div style="text-align: center;">
+      <img src="/img/Jest Code Coverage report.png" style="width: 1000px; height: auto;" />
+  </div>
 
 ## Contribution Guidelines
 
