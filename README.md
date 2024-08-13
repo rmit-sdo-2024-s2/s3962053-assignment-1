@@ -280,6 +280,21 @@ yaml
       <img src="/img/CI Pipeline Stage 10 result 3.png" style="width: 1000px; height: auto;" />
   </div>
 
+### Expected Outcome: Successful CI Pipeline Execution
+If the CI pipeline runs correctly, the stages will complete without errors, as shown in the image below. This indicates that all tests passed, code was linted successfully, and the build process (for the main branch) completed without issues.
+- Feature Branch: The pipeline verifies code quality and functionality, ensuring the feature is ready for review.
+  <div style="text-align: center;">
+      <img src="/img/CI Pipeline Stage 10 result 1.png" style="width: 1000px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 10 result 2.png" style="width: 1000px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 10 result 3.png" style="width: 1000px; height: auto;" />
+  </div>
+- Main Branch: The pipeline additionally builds and uploads artifacts, indicating readiness for deployment.
+  <div style="text-align: center;">
+      <img src="/img/CI Pipeline Stage 10 result 1.png" style="width: 1000px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 10 result 2.png" style="width: 1000px; height: auto;" />
+      <img src="/img/CI Pipeline Stage 10 result 3.png" style="width: 1000px; height: auto;" />
+  </div>
+
 ## Commands and Functionalities
 
 ### 1. Starting the Application
