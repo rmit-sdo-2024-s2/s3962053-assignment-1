@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="6" failures="0" errors="0" time="1.405">
-  <testsuite name="Note API Integration Tests" errors="0" failures="0" skipped="0" timestamp="2024-08-12T12:56:16" time="1.171" tests="6">
-    <testcase classname="Note API Integration Tests Add Note Should add a new note and redirect to homepage" name="Note API Integration Tests Add Note Should add a new note and redirect to homepage" time="0.147">
+<testsuites name="jest tests" tests="6" failures="0" errors="0" time="1.237">
+  <testsuite name="Note API Integration Tests" errors="0" failures="0" skipped="0" timestamp="2024-08-13T03:36:06" time="1.022" tests="6">
+    <testcase classname="Note API Integration Tests Add Note Should add a new note and redirect to homepage" name="Note API Integration Tests Add Note Should add a new note and redirect to homepage" time="0.122">
     </testcase>
-    <testcase classname="Note API Integration Tests Add Note Should not add a note without a title" name="Note API Integration Tests Add Note Should not add a note without a title" time="0.014">
+    <testcase classname="Note API Integration Tests Add Note Should not add a note without a title" name="Note API Integration Tests Add Note Should not add a note without a title" time="0.012">
     </testcase>
-    <testcase classname="Note API Integration Tests Add Note Should not add a note without content" name="Note API Integration Tests Add Note Should not add a note without content" time="0.009">
+    <testcase classname="Note API Integration Tests Add Note Should not add a note without content" name="Note API Integration Tests Add Note Should not add a note without content" time="0.008">
     </testcase>
-    <testcase classname="Note API Integration Tests Toggle Note Importance Should toggle the importance of a note" name="Note API Integration Tests Toggle Note Importance Should toggle the importance of a note" time="0.034">
+    <testcase classname="Note API Integration Tests Toggle Note Importance Should toggle the importance of a note" name="Note API Integration Tests Toggle Note Importance Should toggle the importance of a note" time="0.025">
     </testcase>
-    <testcase classname="Note API Integration Tests Delete Note Should delete a note and redirect to homepage" name="Note API Integration Tests Delete Note Should delete a note and redirect to homepage" time="0.018">
+    <testcase classname="Note API Integration Tests Delete Note Should delete a note and redirect to homepage" name="Note API Integration Tests Delete Note Should delete a note and redirect to homepage" time="0.017">
     </testcase>
-    <testcase classname="Note API Integration Tests Get Notes Should get all notes" name="Note API Integration Tests Get Notes Should get all notes" time="0.019">
+    <testcase classname="Note API Integration Tests Get Notes Should get all notes" name="Note API Integration Tests Get Notes Should get all notes" time="0.014">
     </testcase>
   </testsuite>
 </testsuites>
