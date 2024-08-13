@@ -262,9 +262,9 @@ yaml
 - Expected Output:
   - The code coverage report should be successfully uploaded and available as an artifact in the CI pipeline.
 Screenshot:
-  <div style="text-align: center;">
+  <center>
       <img src="/img/CI Stage 9.png" style="width: 200px; height: auto;" />
-  </div>
+  <center>
 
 10. Build Artifacts (Main Branch Only)
 - Action:
@@ -283,7 +283,7 @@ yaml
       <img src="/img/CI Stage 1.png" style="width: 200px; height: auto;" />
   </div>
 
-## Running the CI Pipeline Locally / Commands and Functionalities
+## Commands and Functionalities / Running the CI Pipeline Locally 
 
 ### 1. Starting the Application
 - Command:
@@ -310,8 +310,8 @@ npm run test-lint
 - Purpose: The purpose of linting in this project is to maintain high code quality and prevent common issues that can arise from poorly written code. By catching these issues early in the CI pipeline, we ensure that only high-quality code is merged into the main branch.
 - Integration: Linting runs automatically on every push and pull request. If any linting errors are detected, the pipeline fails, and the issues must be resolved before the code can be merged.
 - Expected Output:
-+ If there are no issues, the output will indicate that all files passed the linting checks.
-+ If there are errors or warnings, the output will display them with details about the file and line number where the issue occurred.
+ -  If there are no issues, the output will indicate that all files passed the linting checks.
+ -  If there are errors or warnings, the output will display them with details about the file and line number where the issue occurred.
 - Screenshot:
 
 ### 3. Unit Testing
@@ -415,28 +415,3 @@ git push origin feature/your-feature-name
 
 ## Contact Information
 For any questions or support, please contact Gia Tin Huynh Duc at s3962053@rmit.edu.vn.
-
-### Guidance (remove this section before final submission)
-
-1. Refer for assignment specification `Marking Guide` for details of what should appear in this README.
-
-2. If you do not see an `Actions` tab in your GitHub, email matthew.cullen@rmit.edu.au with URL to your repository, so that it can be enabled.
-
-3. Implement your CI pipeline in the directory `.github/workflows`.
-
-4. Refer to [src/README.md](/src/README.md) for important details on building and testing the application.
-
-5. Commit images to the `img` directory and add them like 
-    ```html
-    <img src="/img/md.png" style="height: 70px;"/>
-    ```
-    <img src="/img/md.png" style="height: 70px;"/>
-
-6. Only edit THIS README.md - not the src/README.md
-## 1. Heading
-### 1.1 Subheading 
-### 1.2 Subheading 
-
-## 2. Heading
-### 2.1 Subheading 
-### 2.2 Subheading 
