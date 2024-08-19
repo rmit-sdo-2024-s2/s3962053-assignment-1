@@ -288,11 +288,11 @@ If the CI pipeline runs correctly, the stages will complete without errors, as s
 - Command:
 ```
 sudo systemctl start mongod
-npm start
+npm run start --prefix src
 ```
 - Purpose:
   - The `sudo systemctl start mongod` command ensures that the MongoDB service is running locally, which is required for the application to function properly.
-  - The `npm start` command starts the Notes application, making it available at `http://localhost:3000` (or another specified port).
+  - The `npm run start --prefix src` command starts the Notes application, making it available at `http://localhost:3000` (or another specified port).
 - Expected Output:
   - Confirmation that the MongoDB service has started successfully.
   - A message indicating that the server is running and listening on the specified port.
