@@ -405,11 +405,11 @@ npm run test --prefix src
 ### Playwright Reports
 - Generating the Report: Playwright automatically generates a report after the end-to-end tests are executed. The report provides detailed insights into each test case, including screenshots and logs for each step.
 - Viewing the Report:
-  - After running `npm run test-e2e`, navigate to the `playwright-report` directory to view the report.
+  - After running `npm run test-e2e --prefix src`, navigate to the `playwright-report` directory to view the report.
   - You can open the report in your browser by running the following command:
-  bash
   ```
-  You can open the report in your browser by running the following command:
+  cd src/
+  npx playwright show-report
   ```
   - This will open an HTML report that allows you to navigate through each test case, view screenshots, and analyze any failures.
 - Screenshot:
