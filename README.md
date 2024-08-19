@@ -27,16 +27,14 @@ This repository contains the source code for the Alpine Inc Notes Application, a
 
 ### Steps to Set Up the Project Locally
 1. Clone the repository:
-First, clone the repository to your local machine using the following command:
-bash
+- First, clone the repository to your local machine using the following command:
 ```
 git clone https://github.com/rmit-sdo-2024-s2/s3962053-assignment-1.git
 cd s3962053-assignment-1
 ```
 
 2. Install dependencies:
-Next, install the necessary Node.js dependencies:
-bash
+- Next, install the necessary Node.js dependencies:
 ```
 npm install --prefix src
 ```
@@ -44,18 +42,16 @@ npm install --prefix src
 3. An `.env` file has been provided, that lets the Notes app know where to access the database.
 
 4. Start the MongoDB Server:
-Before running the application, you need to start the MongoDB server and ensure that an instance of MongoDB is running. Use the following command:
-bash 
+- Before running the application, you need to start the MongoDB server and ensure that an instance of MongoDB is running. Use the following command:
 ```
 sudo systemctl start mongod
 ```
 - You can check the status of the MongoDB service with `sudo systemctl status mongod` to ensure it is running.
 5. Start the Application
-bash 
 ```
 npm run start --prefix src
 ```
-The application should start successfully, and it should be accessible at http://localhost:3000
+- The application should start successfully, and it should be accessible at http://localhost:3000
 
 ## Repository Structure
 ```
@@ -104,7 +100,6 @@ The pipeline consists of several stages, each responsible for a specific task in
 
 1. Checkout Code:
 Action:
-yaml
 ```
 - name: Checkout code
   uses: actions/checkout@v4
@@ -120,7 +115,6 @@ yaml
 
 2. Set Up Node.js Environment 
 - Action:
-yaml
 ```
 - name: Set up Node.js
   uses: actions/setup-node@v4
@@ -138,7 +132,6 @@ Expected Output:
 
 3. Install Dependencies
 - Action:
-yaml
 ```
 - name: Install dependencies
   run: |
@@ -157,7 +150,6 @@ yaml
 
 4. Install Playwright Browsers
 - Action:
-yaml
 ```
 - name: Install Playwright browsers
   run: npx playwright install
@@ -174,7 +166,6 @@ yaml
 
 5. Run Linting
 - Action:
-yaml
 ```
 - name: Run lint
   run: npm run test-lint
@@ -191,7 +182,6 @@ yaml
 
 6. Run Unit Tests
 - Action:
-yaml
 ```
 - name: Run unit tests
   run: npm run test-unit
@@ -208,7 +198,6 @@ yaml
 
 7. Run Integration Tests
 - Action:
-yaml
 ```
 - name: Run integration tests
   run: npm run test-integration
@@ -225,7 +214,6 @@ Expected Output:
 
 8. Run End-to-End Tests
 - Action:
-yaml
 ```
 - name: Run end-to-end tests
   run: npm run test-e2e
@@ -243,7 +231,6 @@ yaml
 
 9. Upload Code Coverage
 - Action:
-yaml
 ```
 - name: Upload code coverage
   uses: actions/upload-artifact@v4
@@ -262,7 +249,6 @@ Screenshot:
 
 10. Build Artifacts (Main Branch Only)
 - Action:
-yaml
 ```
 - name: Build application
   run: npm run build
@@ -300,7 +286,6 @@ If the CI pipeline runs correctly, the stages will complete without errors, as s
 
 ### 1. Starting the Application
 - Command:
-bash
 ```
 sudo systemctl start mongod
 npm start
@@ -319,7 +304,6 @@ npm start
 
 ### 2. Static Code Analysis (Linting)
 - Command: 
-bash
 ```
 npm run test-lint --prefix src
 ```
@@ -336,8 +320,7 @@ npm run test-lint --prefix src
 
 
 ### 3. Unit Testing
-- Command:
-bash 
+- Command: 
 ```
 npm run test-unit --prefix src
 ```
@@ -355,7 +338,6 @@ npm run test-unit --prefix src
 
 ### 4. Integration Testing
 - Command: 
-bash 
 ```
 npm run test-integration --prefix src
 ```
@@ -372,8 +354,7 @@ npm run test-integration --prefix src
   </div>
 
 ### 5. End-to-End Testing
-- Command: 
-bash 
+- Command:  
 ```
 npm run test-e2e --prefix src
 ```
@@ -393,7 +374,6 @@ npm run test-e2e --prefix src
 
 ### 6. Building and Deploying Artifacts
 - Command: 
-bash
 ```
 npm run build --prefix src
 ```
@@ -409,7 +389,6 @@ npm run build --prefix src
 
 ### 7. Running All Tests at Once
 - Command: 
-bash
 ```
 npm run test --prefix src
 ```
@@ -452,19 +431,16 @@ npm run test --prefix src
 
 ### Working on a New Feature
 1. Create a new branch for your feature:
-bash
 ```
 git checkout -b feature/your-feature-name
 ```
 
 2. Commit your changes:
-bash
 ```
 git commit -m 'Add some feature'
 ```
 
 3. Push your branch:
-bash
 ```
 git push origin feature/your-feature-name
 ```
