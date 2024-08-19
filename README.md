@@ -38,14 +38,13 @@ cd s3962053-assignment-1
 Next, install the necessary Node.js dependencies:
 bash
 ```
-npm install
+npm install --prefix src
 ```
 
-3. Set up environment variables
-Ensure you have a .env file in the src/ directory with the necessary environment variables configured. This file should include details like the MongoDB connection string and any other configuration variables your application requires.
+3. An `.env` file has been provided, that lets the Notes app know where to access the database.
 
 4. Start the MongoDB Server:
-Before running the application, you need to start the MongoDB server. Use the following command:
+Before running the application, you need to start the MongoDB server and ensure that an instance of MongoDB is running. Use the following command:
 bash 
 ```
 sudo systemctl start mongod
@@ -54,9 +53,9 @@ sudo systemctl start mongod
 5. Start the Application
 bash 
 ```
-npm start
+npm run start --prefix src
 ```
-The application should start successfully, and it should be accessible at http://localhost:3000 (or the port specified in your  environment variables).
+The application should start successfully, and it should be accessible at http://localhost:3000
 
 ## Repository Structure
 ```
@@ -322,7 +321,7 @@ npm start
 - Command: 
 bash
 ```
-npm run test-lint
+npm run test-lint --prefix src
 ```
 - Tool: ESLint
 - Purpose: The purpose of linting in this project is to maintain high code quality and prevent common issues that can arise from poorly written code. By catching these issues early in the CI pipeline, we ensure that only high-quality code is merged into the main branch.
@@ -340,7 +339,7 @@ npm run test-lint
 - Command:
 bash 
 ```
-npm run test-unit
+npm run test-unit --prefix src
 ```
 - Tool: Jest
 - Purpose: Unit tests help to ensure that each individual function in the application works correctly. In the context of the Notes application, this means verifying that each function related to note management behaves as expected, independent of other parts of the system.
@@ -358,7 +357,7 @@ npm run test-unit
 - Command: 
 bash 
 ```
-npm run test-integration
+npm run test-integration --prefix src
 ```
 - Tool: Jest
 - Purpose: These tests are critical for validating that the Notes application functions correctly as a whole, rather than just in isolated units. This is particularly important for a web application where the frontend, backend, and database must all work together seamlessly.
@@ -376,7 +375,7 @@ npm run test-integration
 - Command: 
 bash 
 ```
-npm run test-e2e
+npm run test-e2e --prefix src
 ```
 - Tool: Playwright
 - Purpose: End-to-end tests ensure that the entire application, including all its components, functions correctly in a production-like environment. This is the final validation step to ensure that users will not encounter issues when using the application.
@@ -396,7 +395,7 @@ npm run test-e2e
 - Command: 
 bash
 ```
-npm run build
+npm run build --prefix src
 ```
 - Purpose: Generates build artifacts for deployment, ensuring the application is packaged correctly.
 - Integration: The build process is automatically triggered in the CI pipeline but is restricted to the main branch to ensure that only tested and approved code is deployed.
@@ -412,7 +411,7 @@ npm run build
 - Command: 
 bash
 ```
-npm run test
+npm run test --prefix src
 ```
 - Tool: ESLint, Jest, Playwright
 - Purpose: This command sequentially runs all the tests configured in the pipeline: linting, unit tests, integration tests, and end-to-end tests. It's a comprehensive command to ensure that all aspects of the application are functioning correctly.
