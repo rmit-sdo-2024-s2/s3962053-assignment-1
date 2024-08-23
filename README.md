@@ -99,7 +99,7 @@ The CI pipeline is defined in the `.github/workflows/ci-pipeline.yml` file and i
 The pipeline consists of several stages, each responsible for a specific task in the CI process. Here’s a breakdown of each stage:
 
 1. **Checkout Code:**
-Action:
+- Action:
 ```
 - name: Checkout code
   uses: actions/checkout@v4
