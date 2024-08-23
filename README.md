@@ -26,28 +26,28 @@ This repository contains the source code for the Alpine Inc Notes Application, a
 - MongoDB: Install MongoDB Community Edition from [the official MongoDB website](https://www.mongodb.com/try/download/community) and ensure it is running locally.
 
 ### Steps to Set Up the Project Locally
-1. Clone the repository:
+1. **Clone the repository:**
 - First, clone the repository to your local machine using the following command:
 ```
 git clone https://github.com/rmit-sdo-2024-s2/s3962053-assignment-1.git
 cd s3962053-assignment-1
 ```
 
-2. Install dependencies:
+2. **Install dependencies:**
 - Next, install the necessary Node.js dependencies:
 ```
 npm install --prefix src
 ```
 
-3. An `.env` file has been provided, that lets the Notes app know where to access the database.
+3. **An `.env` file has been provided, that lets the Notes app know where to access the database.**
 
-4. Start the MongoDB Server:
+4. **Start the MongoDB Server:**
 - Before running the application, you need to start the MongoDB server and ensure that an instance of MongoDB is running. Use the following command:
 ```
 sudo systemctl start mongod
 ```
 - You can check the status of the MongoDB service with `sudo systemctl status mongod` to ensure it is running.
-5. Start the Application
+5. **Start the Application:**
 ```
 npm run start --prefix src
 ```
@@ -98,7 +98,7 @@ The CI pipeline is defined in the `.github/workflows/ci-pipeline.yml` file and i
 ### Pipeline Stages
 The pipeline consists of several stages, each responsible for a specific task in the CI process. Here’s a breakdown of each stage:
 
-1. Checkout Code:
+1. **Checkout Code:**
 Action:
 ```
 - name: Checkout code
@@ -113,7 +113,7 @@ Action:
       <img src="/img/CI Pipeline Stage 1 result.png" style="width: auto; height: auto;" />
   </div>
 
-2. Set Up Node.js Environment 
+2. **Set Up Node.js Environment:** 
 - Action:
 ```
 - name: Set up Node.js
@@ -130,7 +130,7 @@ Expected Output:
       <img src="/img/CI Pipeline Stage 2 result.png" style="width: 1000px; height: auto;" />
   </div>
 
-3. Install Dependencies
+3. **Install Dependencies:**
 - Action:
 ```
 - name: Install dependencies
@@ -148,7 +148,7 @@ Expected Output:
       <img src="/img/CI Pipeline Stage 3 result.png" style="width: 1000px; height: auto;" />
   </div>
 
-4. Install Playwright Browsers
+4. **Install Playwright Browsers:**
 - Action:
 ```
 - name: Install Playwright browsers
@@ -164,7 +164,7 @@ Expected Output:
       <img src="/img/CI Pipeline Stage 4 result.png" style="width: 1000px; height: auto;" />
   </div>
 
-5. Run Linting
+5. **Run Linting:**
 - Action:
 ```
 - name: Run lint
@@ -180,7 +180,7 @@ Expected Output:
       <img src="/img/CI Pipeline Stage 5 result.png" style="width: 1000px; height: auto;" />
   </div>
 
-6. Run Unit Tests
+6. **Run Unit Tests:**
 - Action:
 ```
 - name: Run unit tests
@@ -196,7 +196,7 @@ Expected Output:
       <img src="/img/CI Pipeline Stage 6 result.png" style="width: 1000px; height: auto;" />
   </div>
 
-7. Run Integration Tests
+7. **Run Integration Tests:**
 - Action:
 ```
 - name: Run integration tests
@@ -212,7 +212,7 @@ Expected Output:
       <img src="/img/CI Pipeline Stage 7 result.png" style="width: 1000px; height: auto;" />
   </div>
 
-8. Run End-to-End Tests
+8. **Run End-to-End Tests:**
 - Action:
 ```
 - name: Run end-to-end tests
@@ -229,7 +229,7 @@ Expected Output:
       <img src="/img/CI Pipeline Stage 8 result 2.png" style="width: 1000px; height: auto;" />
   </div>
 
-9. Upload Code Coverage
+9. **Upload Code Coverage:**
 - Action:
 ```
 - name: Upload code coverage
@@ -247,7 +247,7 @@ Screenshot:
       <img src="/img/CI Pipeline Stage 9 result.png" style="width: 1000px; height: auto;" />
   </div>
 
-10. Build Artifacts (Main Branch Only)
+10. **Build Artifacts (Main Branch Only):**
 - Action:
 ```
 - name: Build application
@@ -267,14 +267,14 @@ Screenshot:
 
 ### Expected Outcome: Successful CI Pipeline Execution
 If the CI pipeline runs correctly, the stages will complete without errors, as shown in the image below. This indicates that all tests passed, code was linted successfully, and the build process (for the main branch) completed without issues.
-- Feature Branch: The pipeline verifies code quality and functionality, ensuring the feature is ready for review.
+- **Feature Branch**: The pipeline verifies code quality and functionality, ensuring the feature is ready for review.
   <div style="text-align: center;">
       <img src="/img/CI Pipeline Expected Outcome feature 1.png" style="width: 1000px; height: auto;" />
       <img src="/img/CI Pipeline Expected Outcome feature 2.png" style="width: 1000px; height: auto;" />
       <img src="/img/CI Pipeline Expected Outcome feature 3.png" style="width: 1000px; height: auto;" />
       <img src="/img/CI Pipeline Expected Outcome feature 4.png" style="width: 1000px; height: auto;" />
   </div>
-- Main Branch: The pipeline additionally builds and uploads artifacts, indicating readiness for deployment.
+- **Main Branch**: The pipeline additionally builds and uploads artifacts, indicating readiness for deployment.
   <div style="text-align: center;">
       <img src="/img/CI Pipeline Expected Outcome main 1.png" style="width: 1000px; height: auto;" />
       <img src="/img/CI Pipeline Expected Outcome main 2.png" style="width: 1000px; height: auto;" />
@@ -430,22 +430,22 @@ npm run test --prefix src
 ## Contribution Guidelines
 
 ### Working on a New Feature
-1. Create a new branch for your feature:
+1. **Create a new branch for your feature:**
 ```
 git checkout -b feature/your-feature-name
 ```
 
-2. Commit your changes:
+2. **Commit your changes:**
 ```
 git commit -m 'Add some feature'
 ```
 
-3. Push your branch:
+3. **Push your branch:**
 ```
 git push origin feature/your-feature-name
 ```
 
-4. Create a pull request against the main branch.
+4. **Create a pull request against the main branch.**
 
 ### Review Process
 - Make sure your code passes all CI checks before merging.
